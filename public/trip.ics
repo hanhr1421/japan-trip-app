@@ -1,0 +1,357 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//jp-trip//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Japan trip 20-22 Nov
+BEGIN:VEVENT
+UID:jp-trip-0-1795119600000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261119T202000Z
+DTEND:20261119T212500Z
+SUMMARY:Train: Midosuji Line to Umeda\, JR Special Rapid to Kyoto\, JR Nara Line to Inari
+DESCRIPTION:Osaka Metro Midosuji Line (M\, red) from Namba M20 toward 新大阪 Shin-Osaka\, 4 stops to Umeda M16. Walk to JR Osaka: JR Kyoto Line Special Rapid (新快速\, A) toward 京都・米原 (Kyoto / Maibara)\, ~29 min to Kyoto. Change to the JR Nara Line (D) local toward 奈良 Nara: Tofukuji\, then Inari.
+LOCATION:Fushimi Inari Taisha
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: Midosuji Line to Umeda\, JR Special Rapid to Kyoto\, JR Nara Line to Inari
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-1-1795127100000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261119T222500Z
+DTEND:20261119T223000Z
+SUMMARY:Train: JR Nara Line\, Inari → Kyoto
+DESCRIPTION:JR Nara Line (D) from Inari toward 京都 Kyoto\, 2 stops. At Kyoto\, go through the 新幹線のりかえ (Shinkansen transfer) gates to the Tokyo-bound platform.
+LOCATION:Kyoto Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: JR Nara Line\, Inari → Kyoto
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-2-1795128660000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261119T225100Z
+DTEND:20261120T003700Z
+SUMMARY:Shinkansen: Hikari 640\, Kyoto 07:51 → Shizuoka 09:37\, reserved
+DESCRIPTION:Tokaido Shinkansen Hikari 640 for 東京 Tokyo\, Kyoto 07:51\, through the Shinkansen transfer gates (新幹線のりかえ). Get off at 静岡 Shizuoka\, 09:37. The same train as from Shin-Osaka\, boarded one stop later
+LOCATION:Shizuoka Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Shinkansen: Hikari 640\, Kyoto 07:51 → Shizuoka 09:37\, reserved
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-3-1795138380000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T013300Z
+DTEND:20261120T021500Z
+SUMMARY:Bus: Justline bus 42\, 10:33 from Shizuoka Ekimae (stop 11)
+DESCRIPTION:Justline bus 42 (日本平線) from the North Exit bus terminal\, stop 11\, for 日本平ロープウェイ (Nihondaira Ropeway). Get off at 日本平夢テラス入口 (Yume Terrace Iriguchi). Board at the back\, pay as you get off: Suica works. About hourly: 9:33\, 10:33\, 11:23 (timetable as of mid-2026). The 9:33 leaves before your train arrives
+LOCATION:Nihondaira Yume Terrace
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Justline bus 42\, 10:33 from Shizuoka Ekimae (stop 11)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-4-1795143300000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T025500Z
+DTEND:20261120T030000Z
+SUMMARY:Ropeway: Nihondaira Ropeway\, return
+DESCRIPTION:Nihondaira Ropeway from the top station next to the Yume Terrace\, every 10–15 min\, 5-minute ride. Keep the return ticket.
+LOCATION:Kunozan Toshogu
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Ropeway: Nihondaira Ropeway\, return
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-5-1795149000000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T043000Z
+DTEND:20261120T052500Z
+SUMMARY:Bus: Ropeway back\, 13:30 bus to Higashi-Shizuoka\, JR to Shimizu
+DESCRIPTION:Justline bus 42 from the 日本平ロープウェイ stop at 13:30 (every hour at :30) to 東静岡駅南口 (Higashi-Shizuoka Station South Exit)\, ~30 min. Then JR Tokaido Line toward 富士・熱海 (Fuji / Atami)\, 2 stops to 清水 Shimizu. Kashi no Ichi is 5 minutes from the East Exit.
+LOCATION:Kashi no Ichi Shimizu
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Ropeway back\, 13:30 bus to Higashi-Shizuoka\, JR to Shimizu
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-6-1795155600000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T062000Z
+DTEND:20261120T064500Z
+SUMMARY:Bus: Bus from Shimizu Station
+DESCRIPTION:Justline 三保山の手線 (Miho Yamanote Line) from the Shimizu Station East Exit bus terminal: look for 三保 (Miho) on the front\, about every 15 min on weekdays. Get off at 三保松原入口 (Miho-no-Matsubara Iriguchi)\, ~24 min\, then walk the pine boardwalk about 15 min to the beach.
+LOCATION:Miho no Matsubara
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Bus from Shimizu Station
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-7-1795164300000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T084500Z
+DTEND:20261120T093000Z
+SUMMARY:Bus: Bus + JR back to Shizuoka
+DESCRIPTION:Justline 三保山の手線 from 三保松原入口 to 清水駅 Shimizu Station (weekday buses 16:50\, 17:00\, 17:20\; ~28 min)\, then JR Tokaido Line toward 静岡・浜松 (Shizuoka / Hamamatsu)\, 3 stops to Shizuoka.
+LOCATION:Shizuoka Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Bus + JR back to Shizuoka
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-8-1795169880000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T101800Z
+DTEND:20261120T103000Z
+SUMMARY:Walk: Walk past Aoba Oden Street to the East Gate
+DESCRIPTION:
+LOCATION:Sunpu Castle Park
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk past Aoba Oden Street to the East Gate
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-9-1795172400000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T110000Z
+DTEND:20261120T111500Z
+SUMMARY:Walk: Walk back to the station area
+DESCRIPTION:
+LOCATION:Shizuoka Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk back to the station area
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-10-1795216320000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261120T231200Z
+DTEND:20261121T000900Z
+SUMMARY:Shinkansen: Hikari 634\, 08:12 → Tokyo 09:09 (Hayatoku 7)
+DESCRIPTION:Tokaido Shinkansen Hikari 634 for 東京 Tokyo. Book seat E for Mt Fuji: the best view is 8–10 minutes after leaving\, near the Fuji River bridge before Shin-Fuji. Backup: Hikari 636\, 08:41 → 09:42. Book 7+ days ahead on SmartEX
+LOCATION:Tokyo Station Marunouchi Central Exit
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Shinkansen: Hikari 634\, 08:12 → Tokyo 09:09 (Hayatoku 7)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-11-1795219980000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T001300Z
+DTEND:20261121T002500Z
+SUMMARY:Walk: Walk from the Marunouchi side to Ote-mon gate
+DESCRIPTION:Out through the Marunouchi Central Exit (丸の内中央口)\, straight along Gyoko-dori\, the ginkgo avenue\, to the moat\; turn right to the Ote-mon gate.
+LOCATION:Otemon Gate Imperial Palace East Gardens
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk from the Marunouchi side to Ote-mon gate
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-12-1795224300000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T012500Z
+DTEND:20261121T015000Z
+SUMMARY:Metro: Tokyo Metro Chiyoda Line\, Otemachi → Meiji-jingumae (Harajuku)
+DESCRIPTION:From Ote-mon walk 5 min to Otemachi station. Tokyo Metro Chiyoda Line (C\, green) toward 代々木上原 Yoyogi-Uehara\, Otemachi C11 → Meiji-jingumae〈Harajuku〉 C03\, 8 stops\, ~14 min. Follow signs to Meiji Jingu.
+LOCATION:Meiji Jingu
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Metro: Tokyo Metro Chiyoda Line\, Otemachi → Meiji-jingumae (Harajuku)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-13-1795232400000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T034000Z
+DTEND:20261121T040000Z
+SUMMARY:Walk: Walk via Omotesando
+DESCRIPTION:Walk down Omotesando towards Aoyama\, turn left on Aoyama-dori to the Aoyama 2-chome corner: the ginkgo avenue runs north from there.
+LOCATION:Icho Namiki Jingu Gaien
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk via Omotesando
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-14-1795236600000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T045000Z
+DTEND:20261121T050000Z
+SUMMARY:Metro: Ginza Line\, Gaienmae → Shibuya
+DESCRIPTION:Tokyo Metro Ginza Line (G\, orange) from Gaienmae G03 toward 渋谷 Shibuya\, 2 stops to Shibuya G01\, ~4 min.
+LOCATION:Shibuya Scramble Crossing
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Metro: Ginza Line\, Gaienmae → Shibuya
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-15-1795248480000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T080800Z
+DTEND:20261121T081500Z
+SUMMARY:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit
+DESCRIPTION:Stay on Shibuya Sky a few minutes after the 16:30 sunset. Then JR Yamanote Line (JY) toward 新宿・池袋 (Shinjuku / Ikebukuro): Shibuya JY20 → Shinjuku JY17\, 3 stops\, ~7 min. Exit by the South Exit (南口).
+LOCATION:Shinjuku Southern Terrace
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-16-1795252500000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T091500Z
+DTEND:20261121T093000Z
+SUMMARY:Walk: Walk west past the West Exit to the twin towers
+DESCRIPTION:From the Southern Terrace walk back past the South Exit to the West Exit (西口)\, then along the underground walkway towards 都庁 (Tocho)\, ~15 min. Watch from the Citizens’ Plaza in front of the east wall.
+LOCATION:Tokyo Metropolitan Government Building
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk west past the West Exit to the twin towers
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-17-1795254600000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T095000Z
+DTEND:20261121T100000Z
+SUMMARY:Walk: Walk to the West Exit\, Omoide Yokocho
+DESCRIPTION:Walk to the West Exit (西口): Omoide Yokocho runs along the tracks just north of it. Split into two groups of three.
+LOCATION:Omoide Yokocho
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Walk: Walk to the West Exit\, Omoide Yokocho
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-18-1795262400000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T120000Z
+DTEND:20261121T122500Z
+SUMMARY:Train: JR Yamanote Line\, Shinjuku → Ueno
+DESCRIPTION:Walk to the East Exit (東口) of JR Shinjuku. JR Yamanote Line from platform 15\, toward 池袋・上野 (Ikebukuro / Ueno): Shinjuku JY17 → Ueno JY05\, ~25 min.
+LOCATION:Ueno Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: JR Yamanote Line\, Shinjuku → Ueno
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-19-1795297800000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261121T215000Z
+DTEND:20261121T220000Z
+SUMMARY:Metro: Ginza Line\, Ueno → Asakusa
+DESCRIPTION:Tokyo Metro Ginza Line (G\, orange) from Ueno G16 toward 浅草 Asakusa\, 3 stops to Asakusa G19\, ~5 min. Exit 1 for the Kaminarimon gate.
+LOCATION:Kaminarimon Asakusa
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Metro: Ginza Line\, Ueno → Asakusa
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-20-1795306800000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261122T002000Z
+DTEND:20261122T003000Z
+SUMMARY:Metro: Ginza Line\, Asakusa → Ueno
+DESCRIPTION:Tokyo Metro Ginza Line from Asakusa G19 toward 渋谷 Shibuya\, 3 stops to Ueno G16.
+LOCATION:Ueno Station
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Metro: Ginza Line\, Asakusa → Ueno
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-21-1795309500000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261122T010500Z
+DTEND:20261122T022500Z
+SUMMARY:Train: Keisei Rapid Ltd. Express 10:06 Keisei-Ueno → Keisei-Narita 11:10\, lockers\, walk up Omotesando
+DESCRIPTION:Walk to Keisei-Ueno (KS01) by Ueno Park. Rapid Limited Express (快速特急) for 京成成田 Keisei-Narita\, 10:06: no reservation\, tap Suica\, ~64 min to Keisei-Narita (KS40). Not the Skyliner: it skips Keisei-Narita. Keisei changes its timetable on 21 Nov\, so check the 10:06 on the station board. Coin lockers at the station\, then 15 min up Omotesando.
+LOCATION:Naritasan Shinshoji
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: Keisei Rapid Ltd. Express 10:06 Keisei-Ueno → Keisei-Narita 11:10\, lockers\, walk up Omotesando
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-22-1795318500000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261122T033500Z
+DTEND:20261122T040500Z
+SUMMARY:Train: Walk back\, Keisei Narita → Airport Terminal 2·3
+DESCRIPTION:Walk back down Omotesando to Keisei-Narita (KS40). Any Keisei train for 成田空港 Narita Airport (about every 20 min)\, 1 stop to 空港第2ビル Airport Terminal 2·3 (KS41)\, ~8 min. Get off here\, not at the last stop.
+LOCATION:Narita Airport Terminal 2
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Train: Walk back\, Keisei Narita → Airport Terminal 2·3
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-23-1795320000000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261122T040000Z
+DTEND:20261122T042500Z
+SUMMARY:Be at Narita Terminal 2 (VJ935 16:25)
+DESCRIPTION:Tax-refund kiosk first\, then VietJet bag drop (counters 13:25-15:25).
+LOCATION:Narita Airport Terminal 2
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Be at Narita Terminal 2 (VJ935 16:25)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-24-1795332300000@trip
+DTSTAMP:20261110T100800Z
+DTSTART:20261122T072500Z
+DTEND:20261122T082500Z
+SUMMARY:VJ935 Narita T2 to Hanoi
+DESCRIPTION:Be at the gate by about 15:35\; it closes about 16:05.
+LOCATION:Narita Airport Terminal 2
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:VJ935 Narita T2 to Hanoi
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
