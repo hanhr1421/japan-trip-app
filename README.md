@@ -1,5 +1,7 @@
 # Japan Trip app · Shizuoka & Tokyo, 20–22 Nov 2026
 
+**Open it:** https://japan-trip-app-wine.vercel.app
+
 A trip app for the phone: the day's plan with train, bus and platform numbers, Google Maps directions, "Where am I?", calendar reminders, bookings, and a 3D map. It works offline after the first open.
 
 ## Install on your phone

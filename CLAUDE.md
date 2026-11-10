@@ -2,7 +2,7 @@
 
 A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vacation extension in Japan, **Fri 20 – Sun 22 Nov 2026**. The extension is **vacation, not business**: suggestions should focus on views, places, food and a little shopping. No karaoke.
 
-- **Live app:** Vercel project `japan-trip-app` (team "Hai Anh Pham's projects"). It deploys automatically on every push to `main`. The site is the static `public/` folder (see `vercel.json`).
+- **Live app:** https://japan-trip-app-wine.vercel.app (Vercel project `japan-trip-app` (team "Hai Anh Pham's projects"). It deploys automatically on every push to `main`). The site is the static `public/` folder (see `vercel.json`).
 - **Claude artifact:** the same page without the app features, at https://claude.ai/artifact/2cmq4zqsT4JJrjYfWUeyfi (built as `dist/artifact.html`).
 
 ## The trip (current plan)
