@@ -6,11 +6,17 @@ A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vac
 - **Claude artifact:** the same page without the app features, at https://claude.ai/artifact/2cmq4zqsT4JJrjYfWUeyfi (built as `dist/artifact.html`).
 
 ## The trip (current plan)
+There are two routes, chosen with the A / B switch (`PLAN.route`). Both start in Osaka and end at Narita, and both have Mt Fuji at dawn on Saturday.
 - **Thu night:** APA Hotel & Resort Osaka Namba Ekimae Tower (booked).
-- **Fri 20:** Hikari 640 to Shizuoka (09:37). Optional dawn stop at Fushimi Inari, boarding at Kyoto 07:51. Nihondaira Yume Terrace (Mt Fuji view), Kunozan Toshogu by ropeway, lunch at Kashi no Ichi, Miho no Matsubara at sunset, oden dinner, optional Sunpu Castle light-up. Hotel in Shizuoka not booked yet.
-- **Sat 21:** Hikari 634 08:12 to Tokyo (seat E for Fuji). Optional Imperial Palace East Gardens, Meiji Jingu and Harajuku, Icho Namiki ginkgo avenue, Shibuya, optional Shibuya Sky at sunset. **Shinjuku night walk** (agreed with the user): Minamillumi 17:15, Tocho light show 18:30, Omoide Yokocho dinner 19:00, Kabukicho / Godzilla 19:55, Don Quijote 20:05–21:00, JR to Ueno about 21:25. Hotel in Ueno not booked yet.
+- **Plan A, Fri 20 (Shizuoka):** Hikari 640 to Shizuoka (09:37). Optional dawn stop at Fushimi Inari, boarding at Kyoto 07:51. Nihondaira Yume Terrace, Kunozan Toshogu by ropeway, lunch at Kashi no Ichi, Miho no Matsubara at sunset, oden dinner, optional Sunpu Castle light-up. Hotel: **Sanco Inn Shizuoka Kitaguchi** (chosen by the user, 3 rooms, not booked yet; ¥8,850 per person in the budget as `HOTEL_A`).
+- **Plan A, Sat dawn:** two pre-booked taxis 05:40 from Sanco Inn to the Nihondaira Yume Terrace deck (open all night; sunrise about 06:26), back for breakfast, **check out after**, Hikari 634 08:12 to Tokyo (seat E for Fuji).
+- **Plan B, Fri 20 (Yamanashi):** the same Hikari 640 to **Mishima (09:57)**, Mishima–Kawaguchiko Liner bus 10:20 from the South Exit stop 2, Kawaguchiko Station 11:50 (¥2,700). Houtou lunch, Mt Fuji Panoramic Ropeway, Momiji Corridor (autumn leaves festival 7–29 Nov 2026), Oishi Park at sunset. **No hotel chosen in Yamanashi yet**; it should be near Kawaguchiko Station.
+- **Plan B, Sat dawn:** **check out first**, Fujikyu Line 05:49 Kawaguchiko to Shimoyoshida 06:03, Chureito Pagoda (398 steps, sunrise about 06:25). Then Shimoyoshida 07:45, Otsuki, JR Chuo Line, Shinjuku 10:10, Harajuku (or the 08:24 highway bus from Chuodo Shimoyoshida).
+- **Sat 21 (both plans, from Meiji Jingu on):** Plan A only: Tokyo Station, optional Imperial Palace East Gardens, Ueno bag drop. Then Meiji Jingu and Harajuku, Icho Namiki ginkgo avenue, Shibuya, optional Shibuya Sky at sunset. **Shinjuku night walk** (agreed with the user): Minamillumi 17:15, Tocho light show 18:30, Omoide Yokocho dinner 19:00, Kabukicho / Godzilla 19:55, Don Quijote 20:05–21:00, JR to Ueno about 21:25. Hotel in Ueno not booked yet.
 - **Sun 22:** Senso-ji at 07:00 and Azumabashi bridge. Then either Naritasan (Keisei Rapid Ltd. Express 10:06, eel lunch) or Ameyoko plus **Skyliner 41** at 12:00. **Be at Narita T2 by 13:00.** VietJet **VJ935 departs 16:25**; counters are open 13:25–15:25. Since 1 Nov 2026 the tax-free refund is done at a customs kiosk before check-in.
-- **Budget** is per person and **excludes hotels**: full plan ¥42,050, all options off ¥35,280. Recheck these after any data change.
+- **Budget** is per person. Recheck these after any data change:
+  - Plan A full ¥54,100, all options off ¥47,330. Both include ¥8,850 for Sanco Inn and ¥3,200 (estimate) for the dawn taxis; the Tokyo hotel is not included.
+  - Plan B full ¥37,905, all options off ¥30,965. No hotels included.
 
 ## How the code is organised
 - `src/trip-map.template.html` is the whole app: CSS, HTML and one big script. Placeholders (`__D__`, `__XY__`, `__LL__`, `__APP__`, `__APPURL__`, `__THREE__`, `__ORBIT__`, `__PWAHEAD__`) are filled by `src/build.mjs`.
@@ -19,6 +25,9 @@ A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vac
   - `OPT` / `CH`: transport choices.
   - `OPTS`: optional stops the user can switch off.
   - `ALL_STOPS`: the itinerary. A stop with `v:'k'` shows only when option k is on; one with `v:'-k'` shows only when it is off.
+    - `r:'A'` or `r:'B'` puts a stop (or an entry of `OPTS`) on one route only.
+    - Every stop can be switched off except those marked `fx:1` (stations, hotels, the airport). A skipped stop is stored as `PLAN.mine['x:'+key]`, where the key is `sk` or the place id; stops that share a key are skipped together.
+    - When a stop is skipped, the next leg gets a note (`_gap`) because its route was written from the skipped place.
   - `FOOD`, `BK` (links), `BOOKS`, `checks()`.
 - Every leg can carry `how:` with the numbered route: line names and codes (e.g. Ginza Line G16 → G19), platform numbers, bus route and stop numbers, and train numbers.
 - **The "phone app layer"** (`renderToday`, `locate`, `icsText`, `renderLinks`, …) sits **before** the 3D code and uses only the data. If WebGL or three.js fails, the fallback script at the end shows a simple view. Keep it that way.
@@ -30,7 +39,7 @@ A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vac
 ## Online features (phone app only, `APP` true)
 - Source: `src/online.js`, injected by the build at `/*__ONLINE__*/`. The artifact build includes the code but never runs it (its sandbox blocks network calls).
 - **Weather and Mt Fuji outlook:** Open-Meteo forecast API, cached in localStorage for an hour.
-- **Group sync** (shared plan, shared "Booked" ticks, notice board): Supabase project `japan-trip-app` (ref `ryzmxxlldyanzlgfyuav`, Tokyo region), migration `trip_group_sync`.
+- **Group sync** (shared plan including the route and skipped stops, shared "Booked" ticks, notice board): Supabase project `japan-trip-app` (ref `ryzmxxlldyanzlgfyuav`, Tokyo region), migration `trip_group_sync`.
   - Tables `trip_groups` and `trip_notices` have RLS on and no policies. The app only calls the functions `trip_ping`, `trip_get`, `trip_set_plan`, `trip_set_booking`, `trip_post_notice`, `trip_delete_notice`, and the two location functions, each of which checks the group code (stored as a SHA-256 hash).
   - **This repo is public: never commit the group code.** The user has it.
   - **Location sharing** (migration `trip_location_sharing`, table `trip_locs`, functions `trip_set_loc` / `trip_clear_loc`): opt-in per person, sent only while the app is open (about every 45 s), cleared when switched off, hidden by the server after 2 hours. GPS dots are drawn relative to the nearest place model (`palXY`) because city places are spread apart on the map.

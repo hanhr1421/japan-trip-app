@@ -7,11 +7,12 @@ const GKEY='jp-trip-group-v1';
 const GRP={code:'',name:'',joined:false,ver:-1,notices:[],bookings:{},last:0,dirty:false,dirtyNote:'',busy:false,draft:'',all:false,msg:'',server:null,applying:false,locs:[],share:false,myPos:null,watch:null,lastSent:0,skew:0};
 try{const g=JSON.parse(localStorage.getItem(GKEY)||'null');if(g&&g.code&&g.name){GRP.code=g.code;GRP.name=g.name;GRP.joined=true;GRP.share=!!g.share;}}catch(e){}
 function grpSave(){try{if(GRP.joined)localStorage.setItem(GKEY,JSON.stringify({code:GRP.code,name:GRP.name,share:GRP.share}));else localStorage.removeItem(GKEY);}catch(e){}}
-const CHKEYS=['osaka','kyoto','nihon','tokyo','narita'];
-function planSnap(){const mine={};OPTS.forEach(o=>mine[o.k]=!!PLAN.mine[o.k]);const ch={};CHKEYS.forEach(k=>ch[k]=CH[k]);return {mode:PLAN.mode==='mine'?'mine':'full',mine,ch};}
-function normPlan(p){const mine={};OPTS.forEach(o=>mine[o.k]=p&&p.mine&&typeof p.mine[o.k]==='boolean'?p.mine[o.k]:!!PLAN.mine[o.k]);const ch={};CHKEYS.forEach(k=>ch[k]=p&&p.ch&&OPT[k]&&OPT[k].opts[p.ch[k]]?p.ch[k]:CH[k]);return {mode:p&&p.mode==='mine'?'mine':'full',mine,ch};}
+const CHKEYS=['osaka','kyoto','nihon','tokyo','narita','osakaB','kyotoB','dawnB','tokyoB'];
+const xKeys=m=>Object.keys(m||{}).filter(k=>k.slice(0,2)==='x:'&&m[k]===true).sort();
+function planSnap(){const mine={};OPTS.forEach(o=>mine[o.k]=!!PLAN.mine[o.k]);xKeys(PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=CH[k]);return {mode:PLAN.mode==='mine'?'mine':'full',route:PLAN.route==='B'?'B':'A',mine,ch};}
+function normPlan(p){const mine={};OPTS.forEach(o=>mine[o.k]=p&&p.mine&&typeof p.mine[o.k]==='boolean'?p.mine[o.k]:!!PLAN.mine[o.k]);xKeys(p&&p.mine?p.mine:PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=p&&p.ch&&OPT[k]&&OPT[k].opts[p.ch[k]]?p.ch[k]:CH[k]);return {mode:p&&p.mode==='mine'?'mine':'full',route:p&&(p.route==='A'||p.route==='B')?p.route:(PLAN.route==='B'?'B':'A'),mine,ch};}
 function applyRemotePlan(p){const n=normPlan(p);if(JSON.stringify(n)===JSON.stringify(planSnap()))return false;
-  PLAN.mode=n.mode;Object.assign(PLAN.mine,n.mine);CHKEYS.forEach(k=>CH[k]=n.ch[k]);savePlan();GRP.applying=true;
+  PLAN.mode=n.mode;PLAN.route=n.route;PLAN.mine=n.mine;CHKEYS.forEach(k=>CH[k]=n.ch[k]);savePlan();GRP.applying=true;
   try{if(window.__mainOK)applyPlan();else{STOPS=stopsFor(onSet());renderToday();}}catch(e){}GRP.applying=false;return true;}
 function bookLabel(k){try{const b=BOOKS.find(x=>x.k===k);return b?b.t:k;}catch(e){return k;}}
 function bookWho(k){const b=GRP.joined&&GRP.bookings[k];return b&&b.done&&b.who?` <span class="muted">· by ${esc(b.who)}</span>`:'';}
