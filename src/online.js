@@ -4,9 +4,9 @@ const SUPA={url:'https://ryzmxxlldyanzlgfyuav.supabase.co',key:'sb_publishable_3
 async function rpc(fn,args){const r=await fetch(SUPA.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPA.key},body:JSON.stringify(args||{})});
   if(!r.ok){let m='';try{m=(await r.json()).message||'';}catch(e){}const er=new Error(m||('http '+r.status));er.status=r.status;throw er;}return r.json();}
 const GKEY='jp-trip-group-v1';
-const GRP={code:'',name:'',joined:false,ver:-1,notices:[],bookings:{},last:0,dirty:false,dirtyNote:'',busy:false,draft:'',all:false,msg:'',server:null,applying:false};
-try{const g=JSON.parse(localStorage.getItem(GKEY)||'null');if(g&&g.code&&g.name){GRP.code=g.code;GRP.name=g.name;GRP.joined=true;}}catch(e){}
-function grpSave(){try{if(GRP.joined)localStorage.setItem(GKEY,JSON.stringify({code:GRP.code,name:GRP.name}));else localStorage.removeItem(GKEY);}catch(e){}}
+const GRP={code:'',name:'',joined:false,ver:-1,notices:[],bookings:{},last:0,dirty:false,dirtyNote:'',busy:false,draft:'',all:false,msg:'',server:null,applying:false,locs:[],share:false,myPos:null,watch:null,lastSent:0,skew:0};
+try{const g=JSON.parse(localStorage.getItem(GKEY)||'null');if(g&&g.code&&g.name){GRP.code=g.code;GRP.name=g.name;GRP.joined=true;GRP.share=!!g.share;}}catch(e){}
+function grpSave(){try{if(GRP.joined)localStorage.setItem(GKEY,JSON.stringify({code:GRP.code,name:GRP.name,share:GRP.share}));else localStorage.removeItem(GKEY);}catch(e){}}
 const CHKEYS=['osaka','kyoto','nihon','tokyo','narita'];
 function planSnap(){const mine={};OPTS.forEach(o=>mine[o.k]=!!PLAN.mine[o.k]);const ch={};CHKEYS.forEach(k=>ch[k]=CH[k]);return {mode:PLAN.mode==='mine'?'mine':'full',mine,ch};}
 function normPlan(p){const mine={};OPTS.forEach(o=>mine[o.k]=p&&p.mine&&typeof p.mine[o.k]==='boolean'?p.mine[o.k]:!!PLAN.mine[o.k]);const ch={};CHKEYS.forEach(k=>ch[k]=p&&p.ch&&OPT[k]&&OPT[k].opts[p.ch[k]]?p.ch[k]:CH[k]);return {mode:p&&p.mode==='mine'?'mine':'full',mine,ch};}
@@ -19,7 +19,7 @@ function isBookKey(k){try{return BOOKS.some(b=>b.k===k);}catch(e){return false;}
 function setCk(k,v){CKD[k]=v;saveCk();if(APP&&GRP.joined&&isBookKey(k)){GRP.bookings[k]={done:v,who:GRP.name,at:Date.now()};
   rpc('trip_set_booking',{p_code:GRP.code,p_key:k,p_done:v,p_who:GRP.name,p_label:bookLabel(k)}).then(procState).catch(()=>grpNote('Could not reach the group. This tick is saved on your phone only; tick it again when you are online.'));}}
 function grpNote(t){GRP.msg=t;updFeed();}
-function procState(s){if(!s||typeof s!=='object')return;GRP.last=Date.now();GRP.msg='';GRP.notices=Array.isArray(s.notices)?s.notices:[];
+function procState(s){if(!s||typeof s!=='object')return;GRP.last=Date.now();GRP.msg='';GRP.notices=Array.isArray(s.notices)?s.notices:[];GRP.locs=Array.isArray(s.locs)?s.locs:[];if(s.now)GRP.skew=s.now-Date.now();updLocs();
   let ckChanged=false;const bk=s.bookings||{};GRP.bookings=bk;Object.keys(bk).forEach(k=>{if(isBookKey(k)&&!!CKD[k]!==!!bk[k].done){CKD[k]=!!bk[k].done;ckChanged=true;}});
   if(ckChanged){saveCk();try{if(window.__mainOK){updBookBtn();if(!active&&tab==='book')renderBook();if(!active&&tab==='prep')renderPrep();}}catch(e){}}
   const v=+s.plan_ver||0;
@@ -36,9 +36,9 @@ function grpSync(){if(!APP||!GRP.joined||GRP.busy||document.hidden||!navigator.o
   rpc('trip_get',{p_code:GRP.code}).then(procState).catch(e=>{if(/bad_code/.test(e.message)){GRP.joined=false;GRP.code='';grpSave();GRP.msg='That group code is no longer valid. Ask the organiser for the new one.';drawGrp();}else updFeed();}).finally(()=>{GRP.busy=false;});}
 function grpJoin(){const nm=(document.getElementById('gName').value||'').trim().slice(0,24),cd=(document.getElementById('gCode').value||'').trim().toLowerCase();const m=document.getElementById('gMsg');
   if(!nm||!cd){m.textContent='Enter your name and the group code.';return;}if(!navigator.onLine){m.textContent='You are offline. Join when you have a connection.';return;}m.textContent='Joining…';
-  rpc('trip_get',{p_code:cd}).then(s=>{GRP.code=cd;GRP.name=nm;GRP.joined=true;GRP.ver=-1;GRP.dirty=false;grpSave();drawGrp();procState(s);})
+  rpc('trip_get',{p_code:cd}).then(s=>{GRP.code=cd;GRP.name=nm;GRP.joined=true;GRP.share=false;GRP.ver=-1;GRP.dirty=false;grpSave();drawGrp();procState(s);})
    .catch(e=>{m.textContent=/bad_code/.test(e.message)?'That code is not right. Check it with the organiser.':'Could not reach the group server. Try again in a moment.';});}
-function grpLeave(){GRP.joined=false;GRP.code='';GRP.notices=[];GRP.bookings={};GRP.ver=-1;GRP.msg='';grpSave();drawGrp();}
+function grpLeave(){if(GRP.share)shareStop(true);GRP.locs=[];updLocs();GRP.joined=false;GRP.code='';GRP.notices=[];GRP.bookings={};GRP.ver=-1;GRP.msg='';grpSave();drawGrp();}
 function grpPost(){const i=document.getElementById('gText');const t=(i.value||'').trim();if(!t)return;if(!navigator.onLine){grpNote('You are offline. The message was not sent.');return;}
   const b=document.getElementById('gPost');b.disabled=true;rpc('trip_post_notice',{p_code:GRP.code,p_body:t.slice(0,280),p_who:GRP.name}).then(s=>{i.value='';GRP.draft='';procState(s);}).catch(e=>grpNote(/too_many/.test(e.message)?'Too many messages in a minute. Wait a little.':'The message was not sent. Try again.')).finally(()=>{b.disabled=false;});}
 function gTime(ms){const d=new Date(ms),n=new Date();const hm2=p2(d.getHours())+':'+p2(d.getMinutes());return d.toDateString()===n.toDateString()?hm2:`${d.getDate()} ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]} ${hm2}`;}
@@ -58,10 +58,35 @@ function drawGrp(){const el=document.getElementById('grp');if(!el)return;
   el.innerHTML=`<div class="grp-h"><h4>Group board</h4><span class="muted"><b>${esc(GRP.name)}</b> · <span id="gStat">${statTxt()}</span></span></div>
     <p class="gnote" id="gNote" ${GRP.msg?'':'hidden'}>${esc(GRP.msg)}</p>
     <div class="grow"><input id="gText" maxlength="280" placeholder="Message everyone, e.g. Meet at the East Exit 21:00" value="${esc(GRP.draft)}"><button class="btn pri" id="gPost">Post</button></div>
-    <div id="gFeed"></div><p class="muted" style="font-size:11.5px;margin:8px 0 0">The plan and “Booked” ticks are shared with the group. <button class="lk" id="gLeave">Leave group</button></p>`;
+    <div id="gFeed"></div>
+    <h4 style="margin-top:12px">Where is everyone</h4><label class="chk gshare"><input type="checkbox" id="gShare" ${GRP.share?'checked':''}> <span>Share my location with the group</span></label>
+    <p class="muted" style="margin-top:2px">Only while this app is open on your screen. Switch it off to remove your position.</p><div id="gLocs"></div><p class="muted" style="font-size:11.5px;margin:8px 0 0">The plan and “Booked” ticks are shared with the group. <button class="lk" id="gLeave">Leave group</button></p>`;
   const i=document.getElementById('gText');i.oninput=()=>GRP.draft=i.value;i.onkeydown=e=>{if(e.key==='Enter')grpPost();};
-  document.getElementById('gPost').onclick=grpPost;document.getElementById('gLeave').onclick=grpLeave;updFeed();}
-if(APP){addEventListener('load',()=>setTimeout(grpSync,900));setInterval(grpSync,25000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){grpSync();loadWx();}});addEventListener('online',()=>{grpSync();loadWx();updFeed();});addEventListener('offline',updFeed);}
+  document.getElementById('gPost').onclick=grpPost;document.getElementById('gLeave').onclick=grpLeave;
+  const sh=document.getElementById('gShare');sh.onchange=()=>{if(sh.checked)shareStart();else shareStop(true);};updFeed();updLocs();}
+if(APP){addEventListener('load',()=>setTimeout(()=>{grpSync();if(GRP.joined&&GRP.share)shareStart();},900));setInterval(grpSync,25000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){grpSync();loadWx();}});addEventListener('online',()=>{grpSync();loadWx();updFeed();});addEventListener('offline',updFeed);}
+
+/* opt-in location sharing: sent only while the app is open, removed when switched off, hidden by the server after 2 hours */
+function shareSend(force){const p=GRP.myPos;if(!p||!GRP.joined||!GRP.share||!navigator.onLine)return;if(!force&&Date.now()-GRP.lastSent<45000)return;GRP.lastSent=Date.now();
+  rpc('trip_set_loc',{p_code:GRP.code,p_who:GRP.name,p_lat:+p.la.toFixed(5),p_lon:+p.lo.toFixed(5),p_acc:Math.round(p.acc||0)}).then(procState).catch(()=>{});}
+function shareStart(){if(!navigator.geolocation){GRP.share=false;grpNote('This browser cannot share location.');drawGrp();return;}GRP.share=true;grpSave();
+  if(GRP.watch!=null){try{navigator.geolocation.clearWatch(GRP.watch);}catch(e){}}
+  try{GRP.watch=navigator.geolocation.watchPosition(pos=>{const first=!GRP.myPos;GRP.myPos={la:pos.coords.latitude,lo:pos.coords.longitude,acc:pos.coords.accuracy};shareSend(first);updLocs();},
+    err=>{if(err&&err.code===1){shareStop(false);GRP.msg='Location is blocked for this app, so sharing is off. Allow location in your phone settings, then switch it on again.';drawGrp();}},{enableHighAccuracy:true,maximumAge:30000,timeout:20000});}catch(e){shareStop(false);}}
+function shareStop(clear){if(GRP.watch!=null){try{navigator.geolocation.clearWatch(GRP.watch);}catch(e){}GRP.watch=null;}GRP.share=false;GRP.lastSent=0;grpSave();
+  if(clear&&GRP.joined&&GRP.code){const c=GRP.code,n=GRP.name;rpc('trip_clear_loc',{p_code:c,p_who:n}).then(s=>{if(GRP.joined)procState(s);}).catch(()=>grpNote('Could not reach the group to remove your position. It disappears by itself after 2 hours.'));}
+  GRP.locs=GRP.locs.filter(l=>l.name!==GRP.name);updLocs();}
+function agoTxt(at){const m=Math.max(0,Math.round((Date.now()+GRP.skew-at)/6e4));return m<1?'just now':m<60?`${m} min ago`:`${Math.floor(m/60)} h ${m%60} min ago`;}
+function nearPlace(la,lo){let k=null,d=1e9;Object.keys(PLACES).forEach(id=>{if(!LL[id])return;const x=hav(la,lo,LL[id][0],LL[id][1]);if(x<d){d=x;k=id;}});return k&&d<60?{k,d}:null;}
+function updLocs(){try{if(window.__mainOK)showPals(GRP.joined?GRP.locs:[]);}catch(e){}const el=document.getElementById('gLocs');if(!el)return;
+  const me=GRP.myPos,L=GRP.locs.filter(l=>l.name!==GRP.name);let h='';
+  if(GRP.share)h+=`<div class="gl"><div><b>You</b> <small>${me?'sharing now':'finding your position…'}</small></div></div>`;
+  h+=L.map(l=>{const np=nearPlace(l.lat,l.lon),old=Date.now()+GRP.skew-l.at>6e5;
+    return `<div class="gl${old?' old':''}"><div><b>${esc(l.name)}</b> <small>${agoTxt(l.at)}${old?' · app closed or no signal':''}</small><div class="muted">${me?fmtKm(hav(me.la,me.lo,l.lat,l.lon))+' from you':'Switch on sharing to see the distance from you'}${np?` · ${np.d<.15?'at':fmtKm(np.d)+' from'} ${esc(shortName(np.k))}`:''}</div></div>
+     <div class="tbtn"><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${l.lat},${l.lon}&travelmode=walking" target="_blank" rel="noopener">Directions ↗</a>${window.__mainOK?`<button class="btn" data-pal="${esc(l.name)}">On the map</button>`:''}</div></div>`;}).join('');
+  if(!L.length)h+=`<p class="muted" style="margin:6px 0 0">${GRP.share?'Nobody else is sharing right now.':'Nobody is sharing right now.'}</p>`;
+  el.innerHTML=h;el.querySelectorAll('[data-pal]').forEach(b=>b.onclick=()=>{try{palFly(b.dataset.pal);}catch(e){}});}
+if(APP)setInterval(()=>{if(!document.hidden){shareSend(false);if(document.getElementById('gLocs'))updLocs();}},30000);
 
 /* weather and Mt Fuji outlook (Open-Meteo, free, no account) */
 const WXKEY='jp-trip-wx-v1';let WX=null;try{WX=JSON.parse(localStorage.getItem(WXKEY)||'null');}catch(e){}

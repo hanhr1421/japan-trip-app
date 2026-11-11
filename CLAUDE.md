@@ -31,8 +31,9 @@ A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vac
 - Source: `src/online.js`, injected by the build at `/*__ONLINE__*/`. The artifact build includes the code but never runs it (its sandbox blocks network calls).
 - **Weather and Mt Fuji outlook:** Open-Meteo forecast API, cached in localStorage for an hour.
 - **Group sync** (shared plan, shared "Booked" ticks, notice board): Supabase project `japan-trip-app` (ref `ryzmxxlldyanzlgfyuav`, Tokyo region), migration `trip_group_sync`.
-  - Tables `trip_groups` and `trip_notices` have RLS on and no policies. The app only calls the functions `trip_ping`, `trip_get`, `trip_set_plan`, `trip_set_booking`, `trip_post_notice`, `trip_delete_notice`, each of which checks the group code (stored as a SHA-256 hash).
+  - Tables `trip_groups` and `trip_notices` have RLS on and no policies. The app only calls the functions `trip_ping`, `trip_get`, `trip_set_plan`, `trip_set_booking`, `trip_post_notice`, `trip_delete_notice`, and the two location functions, each of which checks the group code (stored as a SHA-256 hash).
   - **This repo is public: never commit the group code.** The user has it.
+  - **Location sharing** (migration `trip_location_sharing`, table `trip_locs`, functions `trip_set_loc` / `trip_clear_loc`): opt-in per person, sent only while the app is open (about every 45 s), cleared when switched off, hidden by the server after 2 hours. GPS dots are drawn relative to the nearest place model (`palXY`) because city places are spread apart on the map.
   - The plan uses a version number; a stale write gets `conflict:true` and the server version wins. The app polls every 25 s while visible.
 - Test with two simulated phones against a mock of these functions before pushing; the sandbox cannot reach Supabase or Open-Meteo directly.
 

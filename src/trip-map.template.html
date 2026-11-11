@@ -449,6 +449,9 @@ body.nomap #pane{max-width:760px;margin:0 auto;width:100%}
 .gnote{background:#fff8e6;border:1px solid #f1d9a5;border-radius:4px;padding:6px 9px}
 .gmore{margin-top:6px;font-size:12px;background:none;border:0;padding:0;cursor:pointer}
 #gLeave{background:none;border:0;padding:0;font-size:11.5px;cursor:pointer}
+.gl{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding:7px 0;font-size:13px}.gl small{font:500 10.5px var(--mono);color:var(--muted)}.gl .muted{font-size:12px}.gl.old{opacity:.6}.gl .tbtn{margin-top:0}
+.gshare{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:4px}
+.lbl.pal{background:#1a73e8;color:#fff;font:600 11px var(--body);padding:2px 7px;border-radius:3px;white-space:nowrap}
 .wr{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:3px 0}.wr span{color:var(--muted);flex:none}.wr b{font-weight:600;text-align:right}
 </style>
 </head>
@@ -727,7 +730,7 @@ function offlineTxt(){let t=navigator.serviceWorker&&navigator.serviceWorker.con
 function toolsHTML(){return `<h3>Phone tools</h3>
   <div class="tool"><button class="btn pri" id="geoBtn">Where am I?</button><span class="muted" id="geoOut">${esc(TD.geoMsg||'Shows how far you are from the next stop. Asks for location permission once.')}</span></div>
   ${APP?`<div class="tool"><button class="btn" id="icsBtn">Add reminders to my calendar</button><span class="muted">Every train, bus and the flight, each with an alert 15 minutes before. If the button does nothing on iPhone, use <a class="lk" href="trip.ics">the full-plan calendar file</a>.</span></div>
-  <div class="tool"><span class="muted"><b>Permissions:</b> location (only when you tap Where am I?) and the calendar file you choose to add. No account, no notifications, no tracking. Group sync sends only your name, your messages, the plan choices and the booking ticks.</span></div>
+  <div class="tool"><span class="muted"><b>Permissions:</b> location (only when you tap Where am I?) and the calendar file you choose to add. No account, no notifications. Group sync sends only your name, your messages, the plan choices and the booking ticks. Your position is sent to the group only if you switch on “Share my location”.</span></div>
   ${isStandalone()?'':installHTML()}<p class="note" id="offl">${offlineTxt()}</p>`
   :`<div class="tool"><a class="btn pri" href="${APPURL}" target="_blank" rel="noopener">Open the phone app ↗</a><span class="muted">For use during the trip: install it on your phone for offline use, “Where am I?” and calendar reminders. Link: <b>${esc(APPURL.replace(/^https:\/\//,'').replace(/\/$/,''))}</b></span></div>`}`;}
 function renderToday(){const el=document.getElementById('pane');if(!el)return;const n=nowMs();
@@ -1003,9 +1006,19 @@ function buildLegs(){legObjs.forEach(o=>{scene.remove(o.tube);scene.remove(o.veh
 
 /* ---------- camera views ---------- */
 const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+const palMarks={};
+const mercXY=(la,lo)=>[MERC.tx+MERC.k*lo*Math.PI/180,MERC.ty-MERC.k*Math.log(Math.tan(Math.PI/4+la*Math.PI/360))];
+/* The map spreads some city places apart so their models do not overlap. Near a trip place, draw a GPS position relative to that place's model so the dot appears beside the right building. */
+function palXY(la,lo){let [X,Y]=mercXY(la,lo);let k=null,d=1e9;Object.keys(places).forEach(id=>{if(!LL[id]||!XY[id])return;const x=hav(la,lo,LL[id][0],LL[id][1]);if(x<d){d=x;k=id;}});
+  if(k&&d<3){const t=mercXY(LL[k][0],LL[k][1]);X=XY[k][0]+(X-t[0]);Y=XY[k][1]+(Y-t[1]);}return X>0&&X<1000&&Y>0&&Y<440?[X,Y]:null;}
+function showPals(list){const seen={};(list||[]).forEach(l=>{if(l.name===GRP.name)return;const q=palXY(l.lat,l.lon);if(!q)return;let m=palMarks[l.name];
+    if(!m){m={g:new THREE.Group()};m.g.add(new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,.14,20),new THREE.MeshBasicMaterial({color:'#e8590c'})));scene.add(m.g);m.d=addLabel(l.name,'pal',m.g.position);palMarks[l.name]=m;}
+    m.g.position.set(q[0]-500,groundAt(q[0],q[1])+.22,q[1]-220);m.g.visible=true;m.d.dataset.on='1';seen[l.name]=1;});
+  Object.keys(palMarks).forEach(n=>{if(!seen[n]){palMarks[n].g.visible=false;palMarks[n].d.dataset.on='0';}});}
+function palFly(name){const m=palMarks[name];if(!m||!m.g.visible)return;const b=m.g.position.clone();liveOff();clk.playing=false;controls.autoRotate=false;document.body.classList.remove('tall');resize();flyTo(b.clone(),b.clone().add(V(0,12,16)),1200);}
 let meMark=null;
-function showMe(la,lo){const X=MERC.tx+MERC.k*lo*Math.PI/180,Y=MERC.ty-MERC.k*Math.log(Math.tan(Math.PI/4+la*Math.PI/360));if(!(X>0&&X<1000&&Y>0&&Y<440))return;
-  if(!meMark){meMark=new THREE.Group();const mm=new THREE.MeshBasicMaterial({color:'#1a73e8'});meMark.add(new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,.14,24),mm));const rg=new THREE.Mesh(new THREE.TorusGeometry(.95,.08,8,32),new THREE.MeshBasicMaterial({color:'#1a73e8',transparent:true,opacity:.45}));rg.rotation.x=Math.PI/2;meMark.add(rg);scene.add(meMark);addLabel('You are here','me',meMark.position);}
+function showMe(la,lo){const q=palXY(la,lo);if(!q)return;const X=q[0],Y=q[1];
+  if(!meMark){meMark=new THREE.Group();const mm=new THREE.MeshBasicMaterial({color:'#1a73e8'});meMark.add(new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,.14,24),mm));const rg=new THREE.Mesh(new THREE.TorusGeometry(.95,.08,8,32),new THREE.MeshBasicMaterial({color:'#1a73e8',transparent:true,opacity:.45}));rg.rotation.x=Math.PI/2;meMark.add(rg);scene.add(meMark);addLabel('You are here','pal',meMark.position).dataset.on='1';}
   const b=V(X-500,groundAt(X,Y)+.2,Y-220);meMark.position.copy(b);meMark.visible=true;liveOff();clk.playing=false;controls.autoRotate=false;flyTo(b.clone(),b.clone().add(V(0,12,16)),1200);}
 const VIEWS={all:{t:V(10,0,30),p:V(10,900,860)},fri:{t:V(105,4,18),p:V(70,62,112)},sat:{t:V(317,1,-106),p:V(317,17,-80)},sun:{t:V(375,1,-114),p:V(360,62,-42)},fuji:{t:V(FUJI.x-500,11,FUJI.y-220),p:V(FUJI.x-500+34,24,FUJI.y-220+52)}};
 let fly=null;function flyTo(t,p,dur=1400){fly={t0:performance.now(),dur,ft:controls.target.clone(),fp:camera.position.clone(),tt:t.clone(),tp:p.clone()};}
@@ -1476,11 +1489,12 @@ function frame0(now){
     const u=reduce?.5:((now/1000)*SPEED[o.mode]/o.len)%1;o.curve.getPointAt(u,tmp);o.curve.getPointAt(Math.min(1,u+.01),tmp2);o.veh.position.copy(tmp);if(tmp.distanceToSquared(tmp2)>1e-8)o.veh.lookAt(tmp2);
     const cs=camera.position.distanceTo(tmp);o.veh.scale.setScalar(o.mode==='ropeway'?.3:Math.min(o.long?14:3,Math.max(o.long?.6:.2,cs/(o.long?40:34))));});
   Object.values(places).forEach(p=>{const s=Math.min(9,Math.max(.3,camera.position.distanceTo(p.base)/75));p.pin.scale.setScalar(s);p.pin.position.y=p.base.y+p.top+.2+1.2*Math.min(1,s)+(active===p.id?Math.sin(now/260)*.25*s:0)+s*.5;p.mat.emissiveIntensity=active===p.id?.65:.25;});
+  {const ps=m=>{if(m&&m.visible)m.scale.setScalar(Math.min(60,Math.max(1,camera.position.distanceTo(m.position)/45)));};Object.values(palMarks).forEach(m=>ps(m.g));ps(meMark);}
   Object.values(foodPins).forEach(fp=>{fp.g.scale.setScalar(Math.min(5,Math.max(.22,camera.position.distanceTo(fp.b)/110)));});
   renderer.render(scene,camera);const w=SW,h=SH;
   labels.forEach(L=>{let show;const pd=camera.position.distanceTo(L.pos);
     if(L.cls==='food'){const fp=foodPins[L.place.food];show=dist<40&&fp.g.visible&&pd<60;tmp.copy(fp.g.position);tmp.y+=1.7*fp.g.scale.x;tmp.project(camera);const vis=show&&tmp.z<1&&Math.abs(tmp.x)<1.1&&Math.abs(tmp.y)<1.1;L.d.style.opacity=vis?1:0;if(vis)L.d.style.transform=`translate(${SL+(tmp.x*.5+.5)*w}px,${ST+(-tmp.y*.5+.5)*h}px) translate(-50%,-115%)`;return;}
-    if(L.cls==='city')show=dist>140;else if(L.cls==='mark'||L.cls==='mark fuji')show=true;else if(L.cls==='mark near')show=dist<120;else if(L.cls==='me')show=!!clk.where;else show=dist<140&&!L.place.dim&&pd<160;
+    if(L.cls==='city')show=dist>140;else if(L.cls==='mark'||L.cls==='mark fuji')show=true;else if(L.cls==='mark near')show=dist<120;else if(L.cls==='pal')show=L.d.dataset.on==='1';else if(L.cls==='me')show=!!clk.where;else show=dist<140&&!L.place.dim&&pd<160;
     if(L.place){tmp.copy(L.place.pin.position);tmp.y+=1.8*L.place.pin.scale.x;}else tmp.copy(L.pos);tmp.project(camera);
     const vis=show&&tmp.z<1&&Math.abs(tmp.x)<1.1&&Math.abs(tmp.y)<1.1;L.d.style.opacity=vis?1:0;if(vis)L.d.style.transform=`translate(${SL+(tmp.x*.5+.5)*w}px,${ST+(-tmp.y*.5+.5)*h}px) translate(-50%,${L.cls==='me'?'45%':'-115%'})`;});}
 document.getElementById('loading').remove();if(innerWidth<=760&&['','today'].includes((location.hash||'').slice(1)))document.body.classList.add('tall');applyViewOffset();buildLegs();clk.ready=true;setClock('fri',mins(STOPS.find(s=>s.day==='fri').t));updPlanSwitch();list();{const h=(location.hash||'').slice(1);const k=Object.keys(TABHASH).find(x=>TABHASH[x]===h);setTab(k||(APP||innerWidth<=760||jstDay(nowMs())?'today':'trip'));}setDay('all');updBookBtn();addEventListener('hashchange',()=>{const h=location.hash.slice(1);const k=Object.keys(TABHASH).find(x=>TABHASH[x]===h);if(k&&k!==tab){active=null;stopCard();setTab(k);}});if(liveDay())setLive();requestAnimationFrame(frame);document.getElementById('grab').onclick=()=>{document.body.classList.toggle('tall');resize();};window.__mainOK=true;if(tab==='today')renderToday();
