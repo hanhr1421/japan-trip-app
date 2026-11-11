@@ -27,6 +27,15 @@ A phone web app (PWA) and 3D trip map for a group of 6 (2 men, 4 women) on a vac
   - Real coordinates for directions and GPS are in `src/ll.json`.
 - **Phone settings:** `LOWP` lowers the pixel ratio and terrain resolution. The postcard viewer reuses one WebGL renderer, and the render loop pauses when hidden or when the WebGL context is lost.
 
+## Online features (phone app only, `APP` true)
+- Source: `src/online.js`, injected by the build at `/*__ONLINE__*/`. The artifact build includes the code but never runs it (its sandbox blocks network calls).
+- **Weather and Mt Fuji outlook:** Open-Meteo forecast API, cached in localStorage for an hour.
+- **Group sync** (shared plan, shared "Booked" ticks, notice board): Supabase project `japan-trip-app` (ref `ryzmxxlldyanzlgfyuav`, Tokyo region), migration `trip_group_sync`.
+  - Tables `trip_groups` and `trip_notices` have RLS on and no policies. The app only calls the functions `trip_ping`, `trip_get`, `trip_set_plan`, `trip_set_booking`, `trip_post_notice`, `trip_delete_notice`, each of which checks the group code (stored as a SHA-256 hash).
+  - **This repo is public: never commit the group code.** The user has it.
+  - The plan uses a version number; a stale write gets `conflict:true` and the server version wins. The app polls every 25 s while visible.
+- Test with two simulated phones against a mock of these functions before pushing; the sandbox cannot reach Supabase or Open-Meteo directly.
+
 ## Workflow
 1. Edit `src/trip-map.template.html` (and `src/map.json` for new places).
 2. `cd src && npm install && node build.mjs`. This writes `public/index.html`, `public/sw.js` (with a new cache version) and `dist/artifact.html`.

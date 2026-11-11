@@ -4,7 +4,7 @@ import fs from 'fs';import path from 'path';import {fileURLToPath} from 'url';
 const here=path.dirname(fileURLToPath(import.meta.url)),root=path.join(here,'..');
 const m=JSON.parse(fs.readFileSync(path.join(here,'map.json'))),ll=fs.readFileSync(path.join(here,'ll.json'),'utf8');
 const APPURL=process.env.APPURL||'https://japan-trip-app-wine.vercel.app/';
-const tpl=fs.readFileSync(path.join(here,'trip-map.template.html'),'utf8').replace('__D__',m.d).replace('__XY__',JSON.stringify(m.xy)).replace('__LL__',ll).replace('__APPURL__',APPURL);
+const tpl=fs.readFileSync(path.join(here,'trip-map.template.html'),'utf8').replace('__D__',m.d).replace('__XY__',JSON.stringify(m.xy)).replace('__LL__',ll).replace('__APPURL__',APPURL).replace('/*__ONLINE__*/',()=>fs.readFileSync(path.join(here,'online.js'),'utf8'));
 const PWAHEAD=`<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0f1a2a">
 <meta name="apple-mobile-web-app-capable" content="yes">

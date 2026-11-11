@@ -431,6 +431,25 @@ body.nomap #pane{max-width:760px;margin:0 auto;width:100%}
   #pane{padding:12px 14px 28px}
 }
 #pane{padding-bottom:max(28px,env(safe-area-inset-bottom))}
+
+/* ---------- v14: online cards (group board, weather) ---------- */
+.card2{border:1px solid var(--line2);border-radius:6px;padding:11px 13px;margin:0 0 12px;background:#fff}
+.card2:empty{display:none}
+.card2 h4{margin:0 0 6px;font:600 10.5px var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card2 p{margin:6px 0 0;font-size:12px;line-height:1.5}
+.grp-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}.grp-h span{font-size:11.5px}
+.grow{display:flex;gap:6px;margin-top:6px;align-items:center;flex-wrap:wrap}
+.grow input{flex:1;min-width:120px;height:34px;border:1px solid var(--line2);border-radius:4px;padding:0 9px;font:14px var(--body);color:var(--ink);background:#fff}
+.grow .btn{height:34px}
+.gn{position:relative;border-top:1px solid var(--line);padding:7px 26px 7px 0;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.gn:first-child{margin-top:8px}
+.gn small{display:block;font:500 10.5px var(--mono);color:var(--muted)}
+.gn.sys{color:var(--muted);font-size:12px}
+.gx{position:absolute;right:0;top:6px;width:22px;height:22px;border:0;background:none;color:var(--muted);font-size:16px;cursor:pointer}
+.gnote{background:#fff8e6;border:1px solid #f1d9a5;border-radius:4px;padding:6px 9px}
+.gmore{margin-top:6px;font-size:12px;background:none;border:0;padding:0;cursor:pointer}
+#gLeave{background:none;border:0;padding:0;font-size:11.5px;cursor:pointer}
+.wr{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:3px 0}.wr span{color:var(--muted);flex:none}.wr b{font-weight:600;text-align:right}
 </style>
 </head>
 <body>
@@ -708,15 +727,16 @@ function offlineTxt(){let t=navigator.serviceWorker&&navigator.serviceWorker.con
 function toolsHTML(){return `<h3>Phone tools</h3>
   <div class="tool"><button class="btn pri" id="geoBtn">Where am I?</button><span class="muted" id="geoOut">${esc(TD.geoMsg||'Shows how far you are from the next stop. Asks for location permission once.')}</span></div>
   ${APP?`<div class="tool"><button class="btn" id="icsBtn">Add reminders to my calendar</button><span class="muted">Every train, bus and the flight, each with an alert 15 minutes before. If the button does nothing on iPhone, use <a class="lk" href="trip.ics">the full-plan calendar file</a>.</span></div>
-  <div class="tool"><span class="muted"><b>Permissions:</b> location (only when you tap Where am I?) and the calendar file you choose to add. No account, no notifications, no tracking.</span></div>
+  <div class="tool"><span class="muted"><b>Permissions:</b> location (only when you tap Where am I?) and the calendar file you choose to add. No account, no notifications, no tracking. Group sync sends only your name, your messages, the plan choices and the booking ticks.</span></div>
   ${isStandalone()?'':installHTML()}<p class="note" id="offl">${offlineTxt()}</p>`
   :`<div class="tool"><a class="btn pri" href="${APPURL}" target="_blank" rel="noopener">Open the phone app ↗</a><span class="muted">For use during the trip: install it on your phone for offline use, “Where am I?” and calendar reminders. Link: <b>${esc(APPURL.replace(/^https:\/\//,'').replace(/\/$/,''))}</b></span></div>`}`;}
 function renderToday(){const el=document.getElementById('pane');if(!el)return;const n=nowMs();
   if(!TD.day)TD.day=jstDay(n)||(n>FLIGHT_MS?'sun':'fri');
   el.innerHTML=`${document.body.classList.contains('nomap')?'<div class="simple">The 3D map could not start on this device, so this is the simple view. Everything you need for each day is here.</div>':''}
-   <div class="nowcard" id="todayHead">${headHTML(n)}</div>
+   <div class="nowcard" id="todayHead">${headHTML(n)}</div>${APP?'<div class="card2" id="grp"></div><div class="card2" id="wx"></div>':''}
    <div class="tdays">${['fri','sat','sun'].map(d=>`<button data-td="${d}" style="--c:${DAYCOL[d]}" aria-pressed="${TD.day===d}">${DAYNAME[d].replace(/ \d+ Nov/,'')} ${TRIPD[d]}</button>`).join('')}</div>
    <div id="tline">${timelineHTML(TD.day,n)}</div>${toolsHTML()}`;
+  if(APP){drawGrp();drawWx();loadWx();}
   el.querySelectorAll('[data-td]').forEach(b=>b.onclick=()=>{TD.day=b.dataset.td;TD.scrolled=true;renderToday();el.scrollTop=0;});
   el.querySelectorAll('[data-map]').forEach(b=>b.onclick=()=>{if(window.__mainOK){try{stopTour();select(b.dataset.map,+b.dataset.i);}catch(e){}}});
   const gb=document.getElementById('geoBtn');if(gb)gb.onclick=locate;
@@ -746,6 +766,7 @@ function renderLinks(){const el=document.getElementById('pane');if(!el)return;el
 if(APP&&'serviceWorker' in navigator){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(()=>{const o=document.getElementById('offl');if(o)o.textContent=offlineTxt();}).catch(()=>{});});
   addEventListener('online',()=>{const o=document.getElementById('offl');if(o)o.textContent=offlineTxt();});addEventListener('offline',()=>{const o=document.getElementById('offl');if(o)o.textContent=offlineTxt();});}
 
+/*__ONLINE__*/
 const W=1000,H=440;
 function hash(i,j){let h=Math.imul(i,374761393)+Math.imul(j,668265263)|0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295;}
 function vn(x,y){const i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j,u=fx*fx*(3-2*fx),v=fy*fy*(3-2*fy);const a=hash(i,j),b=hash(i+1,j),c=hash(i,j+1),d=hash(i+1,j+1);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v;}
@@ -1021,8 +1042,8 @@ function renderTrip(){const T=totals();const t=T.tot;const fr=DORDER.reduce((a,d
   document.getElementById('toPlan').onclick=()=>setTab('plan');
   document.getElementById('cpEN').onclick=()=>copyText(itineraryText('en'));document.getElementById('cpVI').onclick=()=>copyText(itineraryText('vi'));}
 /* ---------- plan builder ---------- */
-function setMode(m){PLAN.mode=m;savePlan();applyPlan();}
-function setOpt(k,on){if(PLAN.mode==='full'){PLAN.mine=Object.assign({},FULLSET);PLAN.mode='mine';}PLAN.mine[k]=on;const o=OPTS.find(x=>x.k===k);if(on&&o.dep)PLAN.mine[o.dep]=true;if(!on)OPTS.filter(x=>x.dep===k).forEach(x=>PLAN.mine[x.k]=false);savePlan();applyPlan();}
+function setMode(m){PLAN.mode=m;savePlan();applyPlan();grpPushPlan(m==='full'?'Switched to the full plan':'Switched to the adjusted plan');}
+function setOpt(k,on){if(PLAN.mode==='full'){PLAN.mine=Object.assign({},FULLSET);PLAN.mode='mine';}PLAN.mine[k]=on;const o=OPTS.find(x=>x.k===k);if(on&&o.dep)PLAN.mine[o.dep]=true;if(!on)OPTS.filter(x=>x.dep===k).forEach(x=>PLAN.mine[x.k]=false);savePlan();applyPlan();grpPushPlan((on?'Added: ':'Skipped: ')+o.name);}
 function applyPlan(){STOPS=stopsFor(onSet());recomputeCodes();indexPlaces();STAMPIDS=[...new Set(STOPS.map(s=>s.id))];
   if(active&&!places[active].on)active=null;lastGot=null;tickDay=null;stopTour();buildLegs();
   if(clk.ready&&SCH[clk.day]){const S=SCH[clk.day];setClock(clk.day,Math.max(S.start,Math.min(S.end,clk.T)));}
@@ -1072,7 +1093,7 @@ function renderTransport(){let h=`<div class="legend">${Object.keys(MODES).map(c
       <div class="muted" style="font-size:11.5px;margin-top:2px">${x.note||''}</div></div></label>`).join('')+`</div>`;});
   h+=`<p class="note">* estimate. Choosing an option updates the map, the timeline and the budget.</p>`;pane.innerHTML=h;
   pane.querySelectorAll('.lg').forEach(e=>e.onclick=()=>select(STOPS[+e.dataset.i].id,+e.dataset.i));
-  pane.querySelectorAll('.opt input').forEach(e=>e.onchange=()=>{CH[e.name]=e.value;buildLegs();list();updBookBtn();renderTransport();});}
+  pane.querySelectorAll('.opt input').forEach(e=>e.onchange=()=>{CH[e.name]=e.value;buildLegs();list();updBookBtn();renderTransport();try{grpPushPlan('Transport: '+OPT[e.name].opts[e.value].label);}catch(_){}});}
 const HREF=[['Women · KOKO HOTEL Shizuoka + Tosei Hotel Cocone Ueno','Double rooms, two per room, both nights',23687],['Men, option A · KOKO HOTEL + APA Iidabashi','One double room each night',28756],['Men, option B · Sun Palace + MYSTAYS Ueno Iriyaguchi','Single rooms both nights',34662],['Men, option C · Sun Palace twin + Hotel Lei Funabashi','Twin, then a smoking double in Funabashi',14460]];
 function renderBudget(){updTop();const {cats,tot}=totals();
   pane.innerHTML=`<h3 style="margin-top:2px">Budget per person · ${PLAN.mode==='full'?'full plan':'my plan'}</h3>${planCards()}
@@ -1120,7 +1141,7 @@ function renderPrep(){const CHECK=checks();const n=CHECK.filter(c=>CKD[c[0]]).le
   <div class="rule"><b>Yamato luggage, English line</b> <a class="lk" href="tel:0120179625">0120-17-9625</a> (9:00–18:00)</div>
   <div class="rule"><b>Left something on a train:</b> tell station staff at once with the train name, car and seat number.</div>
   <h3>Pack</h3><div class="rule">Passport · phone with SmartEX and VietJet apps · Suica · cash and a coin purse · power bank · light down jacket, scarf, layers (9–17°C, windy coast) · walking shoes · plug adapter: Japan uses two flat pins at 100 V, so check chargers say 100–240 V.</div>`;
-  pane.querySelectorAll('[data-ck]').forEach(e=>e.onchange=()=>{CKD[e.dataset.ck]=e.checked;saveCk();updBookBtn();renderPrep();});
+  pane.querySelectorAll('[data-ck]').forEach(e=>e.onchange=()=>{setCk(e.dataset.ck,e.checked);updBookBtn();renderPrep();});
   const ids=['lgL','lgW','lgH','lgK'];const upd=()=>{const v=ids.map(i=>parseFloat(document.getElementById(i).value)||0);const sum=v[0]+v[1]+v[2];const o=document.getElementById('lgOut');if(!sum){o.innerHTML='';return;}let c,t;
     if(sum>250||v[3]>30){c='#fbebeb';t=`<b>${sum} cm${v[3]?' · '+v[3]+' kg':''}: not allowed on the bullet train,</b> and over Yamato’s limit (200 cm, 30 kg). Repack into a smaller bag.`;}
     else if(sum>200){c='#f9eeda';t=`<b>${sum} cm: oversized.</b> Book a “seat with oversized baggage area” on both bullet trains (free on SmartEX). Too big for Yamato (max 200 cm).`;}
@@ -1171,11 +1192,11 @@ const FACE={
 function renderBook(){const VB=visibleBooks();const n=VB.filter(b=>CKD[b.k]).length;
   pane.innerHTML=`<h3 style="margin-top:2px">Book before you go · ${n} / ${VB.length}</h3><div class="prog"><i style="width:${n/VB.length*100}%"></i></div>
   <p class="muted" style="font-size:12.5px">Nothing here is booked yet. Links open the official sites, or a Booking.com search with the dates and room count filled in. Tick “Booked” once done. This list follows ${PLAN.mode==='full'?'the full plan':'my plan'}.</p>
-  ${VB.map((b,i)=>`<div class="bk ${CKD[b.k]?'done':''}"><div class="hd"><span class="no" style="background:${b.col}">${i+1}</span><div><h4>${b.t}</h4><div class="when">${val(b.when)}</div>${dueChip(b)}</div></div>${FACE[b.k]?FACE[b.k]():''}${val(b.body)}<div class="nav">${b.links.map((k,j)=>bkA(k,j===0)).join('')}</div><label class="chk"><input type="checkbox" data-ck="${b.k}" ${CKD[b.k]?'checked':''}> Booked</label></div>`).join('')}
+  ${VB.map((b,i)=>`<div class="bk ${CKD[b.k]?'done':''}"><div class="hd"><span class="no" style="background:${b.col}">${i+1}</span><div><h4>${b.t}</h4><div class="when">${val(b.when)}</div>${dueChip(b)}</div></div>${FACE[b.k]?FACE[b.k]():''}${val(b.body)}<div class="nav">${b.links.map((k,j)=>bkA(k,j===0)).join('')}</div><label class="chk"><input type="checkbox" data-ck="${b.k}" ${CKD[b.k]?'checked':''}> Booked${bookWho(b.k)}</label></div>`).join('')}
   <h3>Optional</h3>${OPTBOOK.map(o=>`<div class="bk opt2"><h4>${o.t}</h4><p class="bt">${o.body}</p><div class="nav">${o.links.map(k=>bkA(k)).join('')}</div></div>`).join('')}
   <h3>Pay on the day, no booking</h3>${isOn('inari')?'<div class="rule">Osaka → Kyoto → Inari: Midosuji Line and JR on Suica/ICOCA, about ¥970</div>':''}<div class="rule">Nihondaira bus 42 (IC card or cash): <a class="lk" href="${BK.justlineJp[1]}" target="_blank" rel="noopener">timetable ↗</a></div><div class="rule">Nihondaira ropeway: buy at the station; closed 1–21 Dec only</div>${isOn('palace')?'<div class="rule">Imperial Palace East Gardens: free, no reservation (closed Mondays and Fridays)</div>':''}<div class="rule">Shrines and Meiji Jingu: free${isOn('shibsky')?'':'; Tocho observatory free'}</div>${isOn('naritasan')?'<div class="rule">Keisei Rapid Limited Express (快速特急) Keisei-Ueno → Keisei-Narita (¥860) and on to Terminal 2: tap Suica, no seat booking. Lockers at Keisei-Narita take coins only.</div>':''}<div class="rule">Metro and JR in the city: tap Suica / ICOCA</div>
   <p class="note">“Booked” ticks are saved in this browser only. Hotel rooms are not part of the per-person budget.</p>`;
-  pane.querySelectorAll('[data-ck]').forEach(e=>e.onchange=()=>{CKD[e.dataset.ck]=e.checked;saveCk();updBookBtn();renderBook();});}
+  pane.querySelectorAll('[data-ck]').forEach(e=>e.onchange=()=>{setCk(e.dataset.ck,e.checked);updBookBtn();renderBook();});}
 function updBookBtn(){const VB=visibleBooks();const done=VB.filter(b=>CKD[b.k]).length;const el=document.getElementById('bookBtn');if(el)el.innerHTML=`Bookings <span>${done}/${VB.length}</span>`;}
 document.getElementById('bookBtn').onclick=()=>{stopTour();active=null;list();stopCard();setTab('book');};
 const TABHASH={today:'today',trip:'overview',plan:'plan',book:'book',transport:'transport',budget:'budget',prep:'checklist'};

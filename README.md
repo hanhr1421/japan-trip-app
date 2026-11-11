@@ -15,5 +15,8 @@ Open it once with internet. After that, it keeps a copy of the whole trip on the
 - **Calendar:** only if you tap *Add reminders to my calendar* and accept the file.
 - No account, no notifications and no tracking.
 
+## Group sync
+On the Today tab, enter your name and the group code from the organiser. Everyone then sees the same plan, the same "Booked" ticks and a shared notice board. It needs mobile data; without a signal the app keeps showing the last synced plan.
+
 ## For developers
 See `CLAUDE.md`. In short: edit `src/trip-map.template.html`, run `node src/build.mjs` (after `npm install` in `src/`), then push to `main`. Vercel serves `public/`.
