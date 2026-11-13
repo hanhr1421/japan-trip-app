@@ -1,5 +1,5 @@
 /* Offline support: the whole trip app is saved on the phone after the first visit */
-const V='202611131523';const CORE='trip-core-'+V,FONTS='trip-fonts-v1';
+const V='202611131607';const CORE='trip-core-'+V,FONTS='trip-fonts-v1';
 const PRE=['./','index.html','lib/three.min.js','lib/OrbitControls.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png','trip.ics'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CORE).then(c=>c.addAll(PRE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('trip-core-')&&k!==CORE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});

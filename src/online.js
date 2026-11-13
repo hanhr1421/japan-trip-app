@@ -7,12 +7,12 @@ const GKEY='jp-trip-group-v1';
 const GRP={code:'',name:'',joined:false,ver:-1,notices:[],bookings:{},last:0,dirty:false,dirtyNote:'',busy:false,draft:'',all:false,msg:'',server:null,applying:false,locs:[],share:false,myPos:null,watch:null,lastSent:0,skew:0};
 try{const g=JSON.parse(localStorage.getItem(GKEY)||'null');if(g&&g.code&&g.name){GRP.code=g.code;GRP.name=g.name;GRP.joined=true;GRP.share=!!g.share;}}catch(e){}
 function grpSave(){try{if(GRP.joined)localStorage.setItem(GKEY,JSON.stringify({code:GRP.code,name:GRP.name,share:GRP.share}));else localStorage.removeItem(GKEY);}catch(e){}}
-const CHKEYS=['osaka','kyoto','nihon','tokyo','narita','osakaB','kyotoB','dawnB','tokyoB'];
+const CHKEYS=['narita','osakaB','dawnB','tokyoB'];
 const xKeys=m=>Object.keys(m||{}).filter(k=>k.slice(0,2)==='x:'&&m[k]===true).sort();
-function planSnap(){const mine={};OPTS.forEach(o=>mine[o.k]=!!PLAN.mine[o.k]);xKeys(PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=CH[k]);return {mode:PLAN.mode==='mine'?'mine':'full',route:PLAN.route==='B'?'B':'A',mine,ch};}
-function normPlan(p){const mine={};OPTS.forEach(o=>mine[o.k]=p&&p.mine&&typeof p.mine[o.k]==='boolean'?p.mine[o.k]:!!PLAN.mine[o.k]);xKeys(p&&p.mine?p.mine:PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=p&&p.ch&&OPT[k]&&OPT[k].opts[p.ch[k]]?p.ch[k]:CH[k]);return {mode:p&&p.mode==='mine'?'mine':'full',route:p&&(p.route==='A'||p.route==='B')?p.route:(PLAN.route==='B'?'B':'A'),mine,ch};}
+function planSnap(){const mine={};OPTS.forEach(o=>mine[o.k]=!!PLAN.mine[o.k]);xKeys(PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=CH[k]);return {mode:PLAN.mode==='mine'?'mine':'full',route:'B',mine,ch};}
+function normPlan(p){const mine={};OPTS.forEach(o=>mine[o.k]=p&&p.mine&&typeof p.mine[o.k]==='boolean'?p.mine[o.k]:!!PLAN.mine[o.k]);xKeys(p&&p.mine?p.mine:PLAN.mine).forEach(k=>mine[k]=true);const ch={};CHKEYS.forEach(k=>ch[k]=p&&p.ch&&OPT[k]&&OPT[k].opts[p.ch[k]]?p.ch[k]:CH[k]);return {mode:p&&p.mode==='mine'?'mine':'full',mine,ch};}
 function applyRemotePlan(p){const n=normPlan(p);if(JSON.stringify(n)===JSON.stringify(planSnap()))return false;
-  PLAN.mode=n.mode;PLAN.route=n.route;PLAN.mine=n.mine;CHKEYS.forEach(k=>CH[k]=n.ch[k]);savePlan();GRP.applying=true;
+  PLAN.mode=n.mode;PLAN.mine=n.mine;CHKEYS.forEach(k=>CH[k]=n.ch[k]);savePlan();GRP.applying=true;
   try{if(window.__mainOK)applyPlan();else{STOPS=stopsFor(onSet());renderToday();}}catch(e){}GRP.applying=false;return true;}
 function bookLabel(k){try{const b=BOOKS.find(x=>x.k===k);return b?b.t:k;}catch(e){return k;}}
 function bookWho(k){const b=GRP.joined&&GRP.bookings[k];return b&&b.done&&b.who?` <span class="muted">· by ${esc(b.who)}</span>`:'';}
@@ -90,20 +90,20 @@ function updLocs(){try{if(window.__mainOK)showPals(GRP.joined?GRP.locs:[]);}catc
 if(APP)setInterval(()=>{if(!document.hidden){shareSend(false);if(document.getElementById('gLocs'))updLocs();}},30000);
 
 /* weather and Mt Fuji outlook (Open-Meteo, free, no account) */
-const WXKEY='jp-trip-wx-v1';let WX=null;try{WX=JSON.parse(localStorage.getItem(WXKEY)||'null');}catch(e){}
+const WXKEY='jp-trip-wx-v2';let WX=null;try{WX=JSON.parse(localStorage.getItem(WXKEY)||'null');}catch(e){}
 const WMO=c=>c===0?'Clear':c===1?'Mostly clear':c===2?'Partly cloudy':c===3?'Overcast':c<=48?'Fog':c<=57?'Drizzle':c<=67?'Rain':c<=77?'Snow':c<=82?'Showers':c<=86?'Snow showers':'Thunderstorm';
 let wxBusy=false;
 function loadWx(){if(!APP||wxBusy||!navigator.onLine)return;if(WX&&Date.now()-WX.t<36e5)return;wxBusy=true;
   const base='https://api.open-meteo.com/v1/forecast?timezone=Asia%2FTokyo&forecast_days=16',dl='&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max';
   const get=u=>fetch(u).then(r=>{if(!r.ok)throw new Error('wx');return r.json();});
-  Promise.allSettled([get(base+'&latitude=34.9756&longitude=138.3828'+dl),get(base+'&latitude=35.6896&longitude=139.7006'+dl),get(base+'&latitude=35.3606&longitude=138.7274&hourly=cloud_cover_low,cloud_cover_mid')]).then(rs=>{
+  Promise.allSettled([get(base+'&latitude=35.5011&longitude=138.7679'+dl),get(base+'&latitude=35.6896&longitude=139.7006'+dl),get(base+'&latitude=35.3606&longitude=138.7274&hourly=cloud_cover_low,cloud_cover_mid')]).then(rs=>{
     const day=(r,date)=>{try{const d=r.value.daily,i=d.time.indexOf(date);if(i<0)return null;const v={c:d.weather_code[i],hi:d.temperature_2m_max[i],lo:d.temperature_2m_min[i],r:d.precipitation_probability_max[i]};return v.c==null||v.hi==null?null:v;}catch(e){return null;}};
-    const fuji=date=>{try{const h=rs[2].value.hourly;let s=0,n=0;h.time.forEach((t,i)=>{if(t.slice(0,10)===date){const hr=+t.slice(11,13);if(hr>=6&&hr<=11&&h.cloud_cover_low[i]!=null){s+=Math.max(h.cloud_cover_low[i],h.cloud_cover_mid[i]||0);n++;}}});return n?Math.round(s/n):null;}catch(e){return null;}};
-    const out={t:Date.now(),fri:day(rs[0],'2026-11-20'),sat:day(rs[1],'2026-11-21'),sun:day(rs[1],'2026-11-22'),fFri:fuji('2026-11-20'),fSat:fuji('2026-11-21')};
+    const fuji=(date,h0,h1)=>{try{const h=rs[2].value.hourly;let s=0,n=0;h.time.forEach((t,i)=>{if(t.slice(0,10)===date){const hr=+t.slice(11,13);if(hr>=h0&&hr<=h1&&h.cloud_cover_low[i]!=null){s+=Math.max(h.cloud_cover_low[i],h.cloud_cover_mid[i]||0);n++;}}});return n?Math.round(s/n):null;}catch(e){return null;}};
+    const out={t:Date.now(),fri:day(rs[0],'2026-11-20'),sat:day(rs[1],'2026-11-21'),sun:day(rs[1],'2026-11-22'),fFri:fuji('2026-11-20',12,16),fSat:fuji('2026-11-21',6,9)};
     if(out.fri||out.sat||out.sun||out.fFri!=null){WX=out;try{localStorage.setItem(WXKEY,JSON.stringify(WX));}catch(e){}}drawWx();}).finally(()=>{wxBusy=false;});}
 function drawWx(){const el=document.getElementById('wx');if(!el)return;
   if(!WX){el.innerHTML=`<h4>Weather</h4><p class="muted">${navigator.onLine?'Loading the forecast…':'The forecast loads when you are online.'}</p>`;return;}
   const row=(lab,v)=>`<div class="wr"><span>${lab}</span><b>${v?`${WMO(v.c)}, ${Math.round(v.lo)}–${Math.round(v.hi)}°C${v.r!=null?`, rain ${Math.round(v.r)}%`:''}`:'not in the forecast yet'}</b></div>`;
   const fj=(lab,c)=>`<div class="wr"><span>${lab}</span><b>${c==null?'not in the forecast yet':c<30?`likely visible (cloud ${c}%)`:c<60?`partly hidden (cloud ${c}%)`:`likely hidden (cloud ${c}%)`}</b></div>`;
-  el.innerHTML=`<h4>Weather</h4>${row('Fri 20 · Shizuoka',WX.fri)}${row('Sat 21 · Tokyo',WX.sat)}${row('Sun 22 · Tokyo',WX.sun)}<h4 style="margin-top:10px">Mt Fuji, morning outlook</h4>${fj('Fri · Nihondaira',WX.fFri)}${fj('Sat · from the train',WX.fSat)}
-   <p class="muted">A guide only: cloud forecast around the mountain, 06:00–11:00. Updated ${gTime(WX.t)}. On the day check <a class="lk" href="https://isfujivisible.com/" target="_blank" rel="noopener">isfujivisible.com ↗</a>. Weather data by <a class="lk" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a>.</p>`;}
+  el.innerHTML=`<h4>Weather</h4>${row('Fri 20 · Kawaguchiko',WX.fri)}${row('Sat 21 · Tokyo',WX.sat)}${row('Sun 22 · Tokyo',WX.sun)}<h4 style="margin-top:10px">Mt Fuji outlook</h4>${fj('Fri · Oishi Park, Chureito (12–16h)',WX.fFri)}${fj('Sat · sunrise at Kogamasao (06–09h)',WX.fSat)}
+   <p class="muted">A guide only: cloud forecast around the mountain for the hours shown. Updated ${gTime(WX.t)}. On the day check <a class="lk" href="https://isfujivisible.com/" target="_blank" rel="noopener">isfujivisible.com ↗</a>. Weather data by <a class="lk" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a>.</p>`;}
