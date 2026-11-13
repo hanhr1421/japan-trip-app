@@ -6,7 +6,7 @@ METHOD:PUBLISH
 X-WR-CALNAME:Japan trip 20-22 Nov
 BEGIN:VEVENT
 UID:jp-trip-0-1795121100000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261119T204500Z
 DTEND:20261119T210000Z
 SUMMARY:Metro: Midosuji Line\, Namba → Shin-Osaka
@@ -20,7 +20,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-1-1795124340000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261119T213900Z
 DTEND:20261120T000600Z
 SUMMARY:Shinkansen: Nozomi 308\, 06:39 → Tokyo 09:06\, reserved (booked)
@@ -34,7 +34,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-2-1795135800000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T005000Z
 DTEND:20261120T025200Z
 SUMMARY:Bus: Fujikyu highway bus\, Tokyo Station 09:50 → Kawaguchiko 11:52
@@ -48,7 +48,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-3-1795144500000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T031500Z
 DTEND:20261120T034200Z
 SUMMARY:Bus: Red Line bus 12:15 → stop 20\, 12:42
@@ -62,7 +62,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-4-1795149720000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T044200Z
 DTEND:20261120T050900Z
 SUMMARY:Bus: Red Line bus 13:42 Oishi Park → Kawaguchiko Station 14:09
@@ -76,7 +76,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-5-1795155000000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T061000Z
 DTEND:20261120T070000Z
 SUMMARY:Train: Fujikyu Line 15:16 → Shimoyoshida ~15:30\, then walk and 398 steps
@@ -89,22 +89,22 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-6-1795160700000@trip
-DTSTAMP:20261113T163100Z
-DTSTART:20261120T074500Z
-DTEND:20261120T080000Z
-SUMMARY:Walk: Walk down from the park to Honcho Street
-DESCRIPTION:Leave the deck by about 16:45 and walk back down towards Shimoyoshida Station\, cross the tracks and continue to 本町通り (Honcho Street)\; the photo spot is the 本町二丁目 (Honcho 2-chome) crossing\, looking south along the street\, with Mt Fuji dark against the evening sky and the shop signs lit. Stay on the pavement. Walking time is an estimate.
+UID:jp-trip-6-1795160400000@trip
+DTSTAMP:20261113T170100Z
+DTSTART:20261120T074000Z
+DTEND:20261120T081000Z
+SUMMARY:Walk: Walk down from the park to Honcho Street (about 30 min)
+DESCRIPTION:Leave the deck by about 16:40 and walk back down (about 7 min down the steps\, 10–15 min to Shimoyoshida Station\, about 10 min on to Honcho Street) towards Shimoyoshida Station\, cross the tracks and continue to 本町通り (Honcho Street)\; the photo spot is the 本町二丁目 (Honcho 2-chome) crossing\, looking south along the street\, with Mt Fuji dark against the evening sky and the shop signs lit. Stay on the pavement. Walking time is an estimate.
 LOCATION:Chureito Pagoda Arakurayama Sengen Park
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Walk: Walk down from the park to Honcho Street
+DESCRIPTION:Walk: Walk down from the park to Honcho Street (about 30 min)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-7-1795163400000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T083000Z
 DTEND:20261120T084500Z
 SUMMARY:Walk: Walk to Nishiura (Shinsekai Kanpai-dori)
@@ -118,7 +118,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-8-1795171980000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T105300Z
 DTEND:20261120T110600Z
 SUMMARY:Train: Fujikyu Line 19:53 Shimoyoshida → Kawaguchiko ~20:06
@@ -132,7 +132,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-9-1795207500000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T204500Z
 DTEND:20261120T210000Z
 SUMMARY:Taxi: Pre-booked taxi from Fuga A
@@ -146,7 +146,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-10-1795211280000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T214800Z
 DTEND:20261120T220000Z
 SUMMARY:Walk: Walk along the lake road to the Momiji Corridor
@@ -160,7 +160,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-11-1795213980000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T223300Z
 DTEND:20261120T224500Z
 SUMMARY:Taxi: Pre-booked taxi back to Fuga A
@@ -174,7 +174,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-12-1795218000000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261120T234000Z
 DTEND:20261121T012500Z
 SUMMARY:Bus: Highway bus\, Kawaguchiko Station 08:40 → Busta Shinjuku 10:25
@@ -188,7 +188,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-13-1795225500000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261121T014500Z
 DTEND:20261121T021000Z
 SUMMARY:Train: Sagawa counter\, then JR Yamanote Line to Harajuku
@@ -202,49 +202,49 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-14-1795232400000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261121T034000Z
-DTEND:20261121T040000Z
-SUMMARY:Walk: Walk via Omotesando
-DESCRIPTION:Walk down Omotesando towards Aoyama\, turn left on Aoyama-dori to the Aoyama 2-chome corner: the ginkgo avenue runs north from there.
+DTEND:20261121T041000Z
+SUMMARY:Walk: Walk via Omotesando and Aoyama-dori (about 2.2 km)
+DESCRIPTION:From Harajuku Station walk down Omotesando (about 1.1 km\, 15 min\, est.) to the Aoyama-dori crossing\, turn left along Aoyama-dori to Gaienmae (about 0.8 km\, 11 min\, est.)\, then about 320 m (5 min) from Exit 2a to the start of the ginkgo avenue (Minato City walking map): about 2.2 km and 30 min in all. To save about 10 min take the Ginza Line from Omotesando G02 to Gaienmae G03 (1 stop\, ¥180).
 LOCATION:Icho Namiki Jingu Gaien
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Walk: Walk via Omotesando
+DESCRIPTION:Walk: Walk via Omotesando and Aoyama-dori (about 2.2 km)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-15-1795236600000@trip
-DTSTAMP:20261113T163100Z
-DTSTART:20261121T045000Z
-DTEND:20261121T050000Z
-SUMMARY:Metro: Ginza Line\, Gaienmae → Shibuya
-DESCRIPTION:Tokyo Metro Ginza Line (G\, orange) from Gaienmae G03 toward 渋谷 Shibuya\, 2 stops to Shibuya G01\, ~4 min.
+UID:jp-trip-15-1795236900000@trip
+DTSTAMP:20261113T170100Z
+DTSTART:20261121T045500Z
+DTEND:20261121T051000Z
+SUMMARY:Metro: Ginza Line\, Gaienmae → Shibuya (about 15 min door to door)
+DESCRIPTION:Walk about 320 m (5 min) from the avenue back to Gaienmae Exit 2a. Tokyo Metro Ginza Line (G\, orange) from Gaienmae G03 toward 渋谷 Shibuya\, 2 stops to Shibuya G01\, ~4 min\; the Ginza Line platform is on the elevated 3rd floor\, about 4 min on foot to the crossing.
 LOCATION:Shibuya Scramble Crossing
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Metro: Ginza Line\, Gaienmae → Shibuya
+DESCRIPTION:Metro: Ginza Line\, Gaienmae → Shibuya (about 15 min door to door)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-16-1795247880000@trip
-DTSTAMP:20261113T163100Z
-DTSTART:20261121T075800Z
+UID:jp-trip-16-1795247520000@trip
+DTSTAMP:20261113T170100Z
+DTSTART:20261121T075200Z
 DTEND:20261121T081500Z
-SUMMARY:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit (about 17 min door to door)
-DESCRIPTION:Stay on Shibuya Sky a few minutes after the 16:30 sunset. Then JR Yamanote Line (JY) toward 新宿・池袋 (Shinjuku / Ikebukuro): Shibuya JY20 → Shinjuku JY17\, 3 stops\, ~7 min on the train\; with the walk down from Shibuya Sky (~5 min) and from the Shinjuku South Exit to Minamillumi (~5 min) allow about 17 min. Leave Shibuya Sky by 16:58 at the latest. Exit by the South Exit (南口).
+SUMMARY:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit (about 23 min door to door)
+DESCRIPTION:Stay on Shibuya Sky a few minutes after the 16:30 sunset. Then JR Yamanote Line (JY) toward 新宿・池袋 (Shinjuku / Ikebukuro): Shibuya JY20 → Shinjuku JY17\, 3 stops\, ~7 min on the train\; with the walk from the Shibuya Sky lift to the JR platform (6–10 min)\, a short wait and the walk from the Shinjuku platform to the South Exit and Minamillumi (~5 min) allow about 23 min. Leave Shibuya Sky by 16:52 at the latest. Exit by the South Exit (南口).
 LOCATION:Shinjuku Southern Terrace
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit (about 17 min door to door)
+DESCRIPTION:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit (about 23 min door to door)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-17-1795252500000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261121T091500Z
 DTEND:20261121T093000Z
 SUMMARY:Walk: Walk west past the West Exit to the twin towers
@@ -257,12 +257,12 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-18-1795254600000@trip
-DTSTAMP:20261113T163100Z
-DTSTART:20261121T095000Z
+UID:jp-trip-18-1795254480000@trip
+DTSTAMP:20261113T170100Z
+DTSTART:20261121T094800Z
 DTEND:20261121T100000Z
 SUMMARY:Walk: Walk to the West Exit\, Omoide Yokocho
-DESCRIPTION:Walk to the West Exit (西口): Omoide Yokocho runs along the tracks just north of it. Split into two groups of three.
+DESCRIPTION:The West Exit is about 10 min (about 750 m) from the Tocho plaza\; Omoide Yokocho runs along the tracks just north of it\, 2 min further. Split into two groups of three.
 LOCATION:Omoide Yokocho
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -272,21 +272,21 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-19-1795262400000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261121T120000Z
-DTEND:20261121T122500Z
-SUMMARY:Train: JR Yamanote Line\, Shinjuku → Ueno
+DTEND:20261121T124000Z
+SUMMARY:Train: JR Yamanote Line\, Shinjuku → Ueno (about 40 min door to door)
 DESCRIPTION:Walk to the East Exit (東口) of JR Shinjuku. JR Yamanote Line from platform 15\, toward 池袋・上野 (Ikebukuro / Ueno): Shinjuku JY17 → Ueno JY05\, ~25 min. Leave Ueno by the Iriya Exit (入谷口)\, 2 min to Grids. Check-in closes at 23:00.
 LOCATION:Ueno Station
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Train: JR Yamanote Line\, Shinjuku → Ueno
+DESCRIPTION:Train: JR Yamanote Line\, Shinjuku → Ueno (about 40 min door to door)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-20-1795297800000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261121T215000Z
 DTEND:20261121T220000Z
 SUMMARY:Metro: Ginza Line\, Ueno → Asakusa
@@ -299,22 +299,22 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-21-1795303800000@trip
-DTSTAMP:20261113T163100Z
-DTSTART:20261121T233000Z
+UID:jp-trip-21-1795303200000@trip
+DTSTAMP:20261113T170100Z
+DTSTART:20261121T232000Z
 DTEND:20261121T234000Z
-SUMMARY:Metro: Ginza Line\, Asakusa → Ueno
-DESCRIPTION:Tokyo Metro Ginza Line from Asakusa G19 toward 渋谷 Shibuya\, 3 stops to Ueno G16\, then about 6 min on foot to Grids. Leave Asakusa by 08:25. Check out and leave by 08:50: Keisei-Ueno is about 9 min on foot with suitcases\, which leaves about 20 min to swap the Skyliner voucher before the 09:20 train (the next one if the queue is long).
+SUMMARY:Metro: Ginza Line\, Asakusa → Ueno (about 20 min door to door)
+DESCRIPTION:Tokyo Metro Ginza Line from Asakusa G19 toward 渋谷 Shibuya\, 3 stops to Ueno G16\, then about 6 min on foot to Grids. Leave Asakusa by 08:20. Check out and leave by 08:50: Keisei-Ueno is about 9 min on foot with suitcases\, which leaves about 20 min to swap the Skyliner voucher before the 09:20 train (the next one if the queue is long).
 LOCATION:Ueno Station
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Metro: Ginza Line\, Asakusa → Ueno
+DESCRIPTION:Metro: Ginza Line\, Asakusa → Ueno (about 20 min door to door)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-22-1795307040000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261122T002400Z
 DTEND:20261122T010500Z
 SUMMARY:Train: Skyliner about 09:20\, Keisei-Ueno → Airport Terminal 2·3\, about 10:01
@@ -328,7 +328,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-23-1795311120000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261122T013200Z
 DTEND:20261122T015000Z
 SUMMARY:Bus: Bus from T2 stop 28 to Shisui Premium Outlets
@@ -342,7 +342,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-24-1795318920000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261122T034200Z
 DTEND:20261122T040000Z
 SUMMARY:Bus: Bus back from the outlet to Terminal 2
@@ -356,7 +356,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-25-1795320000000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261122T040000Z
 DTEND:20261122T042500Z
 SUMMARY:Be at Narita Terminal 2 (VJ935 16:25)
@@ -370,7 +370,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-26-1795332300000@trip
-DTSTAMP:20261113T163100Z
+DTSTAMP:20261113T170100Z
 DTSTART:20261122T072500Z
 DTEND:20261122T082500Z
 SUMMARY:VJ935 Narita T2 to Hanoi
