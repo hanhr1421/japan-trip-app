@@ -6,7 +6,7 @@ METHOD:PUBLISH
 X-WR-CALNAME:Japan trip 20-22 Nov
 BEGIN:VEVENT
 UID:jp-trip-0-1795122600000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261119T211000Z
 DTEND:20261119T212500Z
 SUMMARY:Metro: Midosuji Line\, Namba → Shin-Osaka
@@ -20,7 +20,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-1-1795124520000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261119T214200Z
 DTEND:20261119T235700Z
 SUMMARY:Shinkansen: Hikari 636\, 06:42 → Mishima ~08:57\, reserved
@@ -34,11 +34,11 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-2-1795134000000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T002000Z
 DTEND:20261120T015000Z
 SUMMARY:Bus: Mishima–Kawaguchiko Liner\, 09:20 → 10:50
-DESCRIPTION:From the Shinkansen gates follow the signs to the South Exit (南口)\, 4 min. 特急 三島・河口湖ライナー (Mishima–Kawaguchiko Liner)\, stop 2 (2番線)\, 09:20. It runs by Lake Yamanaka and Fuji-Q Highland to 河口湖駅 Kawaguchiko Station\, 10:50\, the last stop. Reserve the 6 seats ahead (¥2\,500 on the web\, ¥2\,700 otherwise)\; Suica is not accepted. One suitcase each in the trunk\, which cannot be reserved: queue first. If you miss it\, the next is 10:20 → 11:50. At Kawaguchiko\, leave the suitcases at the house if the host agrees\, or in the coin lockers at the station.
+DESCRIPTION:From the Shinkansen gates follow the signs to the South Exit (南口)\, 4 min. 特急 三島・河口湖ライナー (Mishima–Kawaguchiko Liner)\, stop 2 (2番線)\, 09:20. It runs by Lake Yamanaka and Fuji-Q Highland to 河口湖駅 Kawaguchiko Station\, 10:50\, the last stop. Reserve the 6 seats ahead (¥2\,500 on the web\, ¥2\,700 otherwise)\; Suica is not accepted. One suitcase each in the trunk\, which cannot be reserved: queue first. If you miss it\, the next is 10:20 → 11:50. At Kawaguchiko\, put the suitcases in the coin lockers at the station (large lockers about ¥700\, est.): Fuga A only takes luggage from 13:00.
 LOCATION:Kawaguchiko Station
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -48,7 +48,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-3-1795140000000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T020000Z
 DTEND:20261120T022700Z
 SUMMARY:Bus: Red Line bus 11:00 → stop 20\, 11:27
@@ -62,11 +62,11 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-4-1795147020000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T035700Z
 DTEND:20261120T042400Z
 SUMMARY:Bus: Red Line bus 12:57 Oishi Park → Kawaguchiko Station 13:24
-DESCRIPTION:Red Line for 河口湖駅 from stop 20\, 河口湖自然生活館 at 12:57 (or 12:42 for a longer lunch)\, 27 min to Kawaguchiko Station. Houtou by the station\, then the 14:25 train.
+DESCRIPTION:Red Line for 河口湖駅 from stop 20\, 河口湖自然生活館 at 12:57 (or 12:42 for a longer lunch)\, 27 min to Kawaguchiko Station. Take the suitcases out of the lockers and walk them 2 min to Fuga A\, which takes luggage from 13:00 (check-in is from 16:00). Then houtou by the station and the 14:25 train.
 LOCATION:Kawaguchiko Station
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -76,7 +76,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-5-1795152300000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T052500Z
 DTEND:20261120T061500Z
 SUMMARY:Train: Fujikyu Line 14:25 → Shimoyoshida 14:39\, then walk and 398 steps
@@ -90,7 +90,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-6-1795160700000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T074500Z
 DTEND:20261120T080000Z
 SUMMARY:Walk: Walk down from the park to Honcho Street
@@ -104,7 +104,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-7-1795163400000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T083000Z
 DTEND:20261120T084500Z
 SUMMARY:Walk: Walk to Nishiura (Shinsekai Kanpai-dori)
@@ -118,11 +118,11 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-8-1795171980000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T105300Z
 DTEND:20261120T110600Z
 SUMMARY:Train: Fujikyu Line 19:53 Shimoyoshida → Kawaguchiko ~20:06
-DESCRIPTION:Fujikyu Line for 河口湖 Kawaguchiko from Gekkoji (about 19:55\, est.) or Shimoyoshida (19:53)\; trains also at 19:22\, 20:23\, 20:52\, 21:34\, the last at 23:51 from Shimoyoshida. Tap Suica. Collect the suitcases\, check in at Fuga A (contactless\, 2 min on foot)\, early night: the sunrise taxi is at 05:45.
+DESCRIPTION:Fujikyu Line for 河口湖 Kawaguchiko from Gekkoji (about 19:55\, est.) or Shimoyoshida (19:53)\; trains also at 19:22\, 20:23\, 20:52\, 21:34\, the last at 23:51 from Shimoyoshida. Tap Suica. Check in at Fuga A (contactless\, 2 min on foot\; the suitcases are already there)\, early night: the sunrise taxi is at 05:45.
 LOCATION:Kawaguchiko Station
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -132,7 +132,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-9-1795207500000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T204500Z
 DTEND:20261120T210000Z
 SUMMARY:Taxi: Pre-booked taxi from Fuga A
@@ -146,7 +146,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-10-1795211280000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T214800Z
 DTEND:20261120T220000Z
 SUMMARY:Walk: Walk along the lake road to the Momiji Corridor
@@ -160,7 +160,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-11-1795214280000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T223800Z
 DTEND:20261120T225000Z
 SUMMARY:Taxi: Pre-booked taxi back to Fuga A
@@ -174,7 +174,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-12-1795218000000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261120T234000Z
 DTEND:20261121T012500Z
 SUMMARY:Bus: Highway bus\, Kawaguchiko Station 08:40 → Busta Shinjuku 10:25
@@ -188,11 +188,11 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-13-1795224900000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T013500Z
 DTEND:20261121T020000Z
 SUMMARY:Train: Sagawa counter\, then JR Yamanote Line to Harajuku
-DESCRIPTION:On the 3rd floor of Busta Shinjuku\, where the bus arrives\, go into the Tokyo Tourist Information Center: the Sagawa counter (6:30–21:00) sends suitcases to a Tokyo hotel the same day if you hand them in by 11:00\; they reach Grids Tokyo Ueno after 16:00 (about ¥2\,180 for a suitcase up to 140 cm and 20 kg\; not in the budget). If the bus is late and you miss 11:00\, store them there instead (¥1\,000 a day each) and collect them before 21:00. Then go down to the JR gates below the terminal: JR Yamanote Line\, platform 14\, toward 渋谷・品川 (Shibuya / Shinagawa)\, 2 stops to Harajuku JY19\, ~4 min.
+DESCRIPTION:On the 3rd floor of Busta Shinjuku\, where the bus arrives\, go into the Tokyo Tourist Information Center: the Sagawa counter (6:30–21:00) sends suitcases to a Tokyo hotel the same day if you hand them in by 11:00\; they reach Grids Tokyo Ueno after 16:00 (about ¥2\,180 for a suitcase up to 140 cm and 20 kg\; counted in the budget). If you would rather not send them\, or the bus is late and you miss 11:00\, leave them in storage at the same counter (about ¥800–1\,500 a bag for the day) or in coin lockers\, and collect them on the way back through Shinjuku before 21:00 (then JR to Ueno with the suitcases). Then go down to the JR gates below the terminal: JR Yamanote Line\, platform 14\, toward 渋谷・品川 (Shibuya / Shinagawa)\, 2 stops to Harajuku JY19\, ~4 min.
 LOCATION:Meiji Jingu
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -202,7 +202,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-14-1795232400000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T034000Z
 DTEND:20261121T040000Z
 SUMMARY:Walk: Walk via Omotesando
@@ -216,7 +216,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-15-1795236600000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T045000Z
 DTEND:20261121T050000Z
 SUMMARY:Metro: Ginza Line\, Gaienmae → Shibuya
@@ -230,7 +230,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-16-1795248480000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T080800Z
 DTEND:20261121T081500Z
 SUMMARY:Train: JR Yamanote Line\, Shibuya → Shinjuku South Exit
@@ -244,7 +244,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-17-1795252500000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T091500Z
 DTEND:20261121T093000Z
 SUMMARY:Walk: Walk west past the West Exit to the twin towers
@@ -258,7 +258,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-18-1795254600000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T095000Z
 DTEND:20261121T100000Z
 SUMMARY:Walk: Walk to the West Exit\, Omoide Yokocho
@@ -272,7 +272,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-19-1795262400000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T120000Z
 DTEND:20261121T122500Z
 SUMMARY:Train: JR Yamanote Line\, Shinjuku → Ueno
@@ -286,7 +286,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-trip-20-1795297800000@trip
-DTSTAMP:20261113T020600Z
+DTSTAMP:20261113T023700Z
 DTSTART:20261121T215000Z
 DTEND:20261121T220000Z
 SUMMARY:Metro: Ginza Line\, Ueno → Asakusa
@@ -299,12 +299,12 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-21-1795306800000@trip
-DTSTAMP:20261113T020600Z
-DTSTART:20261122T002000Z
-DTEND:20261122T003000Z
+UID:jp-trip-21-1795305000000@trip
+DTSTAMP:20261113T023700Z
+DTSTART:20261121T235000Z
+DTEND:20261122T000000Z
 SUMMARY:Metro: Ginza Line\, Asakusa → Ueno
-DESCRIPTION:Tokyo Metro Ginza Line from Asakusa G19 toward 渋谷 Shibuya\, 3 stops to Ueno G16\, then about 6 min on foot to Grids. Check out and leave by 09:50: Keisei-Ueno is about 9 min on foot with suitcases.
+DESCRIPTION:Tokyo Metro Ginza Line from Asakusa G19 toward 渋谷 Shibuya\, 3 stops to Ueno G16\, then about 6 min on foot to Grids. Leave Asakusa by 08:40. Check out and leave by 09:05: Keisei-Ueno is about 9 min on foot with suitcases.
 LOCATION:Ueno Station
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -313,36 +313,50 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-22-1795309500000@trip
-DTSTAMP:20261113T020600Z
-DTSTART:20261122T010500Z
-DTEND:20261122T022500Z
-SUMMARY:Train: Keisei Rapid Ltd. Express 10:06 Keisei-Ueno → Keisei-Narita 11:10\, lockers\, walk up Omotesando
-DESCRIPTION:Walk to Keisei-Ueno (KS01) by Ueno Park. Rapid Limited Express (快速特急) for 京成成田 Keisei-Narita\, 10:06: no reservation\, tap Suica\, ~64 min to Keisei-Narita (KS40). Not the Skyliner: it skips Keisei-Narita. Keisei changes its timetable on 21 Nov\, so check the 10:06 on the station board. Coin lockers at the station\, then 15 min up Omotesando.
-LOCATION:Naritasan Shinshoji
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Train: Keisei Rapid Ltd. Express 10:06 Keisei-Ueno → Keisei-Narita 11:10\, lockers\, walk up Omotesando
-TRIGGER:-PT15M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:jp-trip-23-1795318500000@trip
-DTSTAMP:20261113T020600Z
-DTSTART:20261122T033500Z
-DTEND:20261122T040500Z
-SUMMARY:Train: Walk back\, Keisei Narita → Airport Terminal 2·3
-DESCRIPTION:Walk back down Omotesando to Keisei-Narita (KS40). Any Keisei train for 成田空港 Narita Airport (about every 20 min)\, 1 stop to 空港第2ビル Airport Terminal 2·3 (KS41)\, ~8 min. Get off here\, not at the last stop.
+UID:jp-trip-22-1795307040000@trip
+DTSTAMP:20261113T023700Z
+DTSTART:20261122T002400Z
+DTEND:20261122T010500Z
+SUMMARY:Train: Skyliner about 09:20\, Keisei-Ueno → Airport Terminal 2·3\, about 10:01
+DESCRIPTION:Skyliner from Keisei-Ueno (KS01) at about 09:20\, all seats reserved: book the exact train for Sun 22 Nov (Keisei renumbers the Skyliners on 21 Nov). Get off at 空港第2ビル Airport Terminal 2·3 (KS41)\, about 41 min later. Go up to the departures floor and leave the suitcases at a baggage storage counter (手荷物一時預かり)\, about ¥1\,000 a suitcase for the day (est.\; not checked).
 LOCATION:Narita Airport Terminal 2
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Train: Walk back\, Keisei Narita → Airport Terminal 2·3
+DESCRIPTION:Train: Skyliner about 09:20\, Keisei-Ueno → Airport Terminal 2·3\, about 10:01
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-24-1795320000000@trip
-DTSTAMP:20261113T020600Z
+UID:jp-trip-23-1795310220000@trip
+DTSTAMP:20261113T023700Z
+DTSTART:20261122T011700Z
+DTEND:20261122T013500Z
+SUMMARY:Bus: Bus from T2 stop 28 to Shisui Premium Outlets
+DESCRIPTION:From the T2 arrivals floor (1F) go out to bus stop 28: the direct bus for 酒々井プレミアム・アウトレット\, about 15–18 min\; pay by IC card or cash (about ¥500\, est.). Times are not checked: look them up for Sunday and take the first after 10:10.
+LOCATION:Shisui Premium Outlets
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Bus from T2 stop 28 to Shisui Premium Outlets
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-24-1795318920000@trip
+DTSTAMP:20261113T023700Z
+DTSTART:20261122T034200Z
+DTEND:20261122T040000Z
+SUMMARY:Bus: Bus back from the outlet to Terminal 2
+DESCRIPTION:Meet at the outlet bus stop by 12:35 and take the bus for 成田空港\, about 18 min to Terminal 2\; if it runs every 30 min\, the one after is still in time. Collect the suitcases\, then the customs tax-refund kiosk before the 13:25 check-in.
+LOCATION:Narita Airport Terminal 2
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Bus: Bus back from the outlet to Terminal 2
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jp-trip-25-1795320000000@trip
+DTSTAMP:20261113T023700Z
 DTSTART:20261122T040000Z
 DTEND:20261122T042500Z
 SUMMARY:Be at Narita Terminal 2 (VJ935 16:25)
@@ -355,8 +369,8 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:jp-trip-25-1795332300000@trip
-DTSTAMP:20261113T020600Z
+UID:jp-trip-26-1795332300000@trip
+DTSTAMP:20261113T023700Z
 DTSTART:20261122T072500Z
 DTEND:20261122T082500Z
 SUMMARY:VJ935 Narita T2 to Hanoi
