@@ -7,8 +7,8 @@ X-WR-CALNAME:Japan trip 20-22 Nov
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
 UID:jp-fri-shinosaka-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261119T204000Z
 DTEND:20261119T210000Z
 SUMMARY:! Metro: Midosuji Line\, Namba → Shin-Osaka
@@ -76,8 +76,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-tokyo-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261119T213900Z
 DTEND:20261120T000600Z
 SUMMARY:! Shinkansen: Nozomi 308\, 06:39 → Tokyo 09:06\, res
@@ -124,8 +124,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-kawaguchiko-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T005000Z
 DTEND:20261120T025200Z
 SUMMARY:! Bus: Fujikyu highway bus\, Tokyo Station 09:50 → K
@@ -174,8 +174,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-oishi-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T031500Z
 DTEND:20261120T034200Z
 SUMMARY:Bus: Red Line bus 12:15 → stop 20\, 12:42
@@ -212,8 +212,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-kawaguchiko-2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T044200Z
 DTEND:20261120T050900Z
 SUMMARY:Bus: Red Line bus 13:42 Oishi Park → Kawaguchiko Sta
@@ -249,8 +249,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-chureito-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T050900Z
 DTEND:20261120T061000Z
 SUMMARY:! Train: Fujikyu Line 14:25 → Shimoyoshida ~14:39\, 
@@ -304,8 +304,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-sunset@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T072000Z
 DTEND:20261120T074000Z
 SUMMARY:! Sunset 16:33 at Chureito Pagoda: be on the deck
@@ -322,8 +322,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-chureito-2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T074000Z
 DTEND:20261120T081000Z
 SUMMARY:Walk: Walk down from the park to Honcho Street (abou
@@ -358,8 +358,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-chureito-3@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T083000Z
 DTEND:20261120T084500Z
 SUMMARY:Walk: Walk to Nishiura (Shinsekai Kanpai-dori)
@@ -387,8 +387,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-fri-kawaguchiko-3@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T105300Z
 DTEND:20261120T110600Z
 SUMMARY:Train: Fujikyu Line 19:53 Shimoyoshida → Kawaguchiko
@@ -427,8 +427,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-kogamasao-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T204500Z
 DTEND:20261120T210000Z
 SUMMARY:! Taxi: Pre-booked taxi from Fuga A
@@ -489,8 +489,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-momiji-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T214800Z
 DTEND:20261120T220000Z
 SUMMARY:Walk: Walk along the lake road to the Momiji Corrido
@@ -517,8 +517,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-kawaguchiko-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T223300Z
 DTEND:20261120T224500Z
 SUMMARY:! Taxi: Pre-booked taxi back to Fuga A
@@ -552,8 +552,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-checkout@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T231000Z
 DTEND:20261120T232500Z
 SUMMARY:! Check out of Fuga A by 08:25 (bus 08:40)
@@ -575,8 +575,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-minami-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261120T234000Z
 DTEND:20261121T012500Z
 SUMMARY:! Bus: Highway bus\, Kawaguchiko Station 08:40 → Bus
@@ -621,8 +621,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-sagawa@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T012500Z
 DTEND:20261121T020000Z
 SUMMARY:! Sagawa deadline 11:00: suitcases to Grids
@@ -640,44 +640,48 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-meiji-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T014500Z
 DTEND:20261121T021000Z
 SUMMARY:! Train: Sagawa counter\, then JR Yamanote Line to H
  arajuku
-DESCRIPTION:ARRIVE 11:10: Meiji Jingu + Harajuku lunch\nLEAV
- E 10:45. Sagawa counter\, then JR Yamanote Line to Harajuku 
- (¥160 each)\n\nSagawa deadline 11:00. Then JR Yamanote Line 
- from platform 14 to Harajuku\, tap Suica.\n\nROUTE: On the 3
- rd floor of Busta Shinjuku\, where the bus arrives\, go into
-  the Tokyo Tourist Information Center: the Sagawa counter (6
- :30–21:00) sends suitcases to a Tokyo hotel the same day if 
- you hand them in by 11:00\; they reach Grids Tokyo Ueno afte
- r 16:00 (about ¥2\,180 for a suitcase up to 140 cm and 20 kg
- \; counted in the budget). If you would rather not send them
- \, or the bus is late and you miss 11:00\, leave them in sto
- rage at the same counter (about ¥800–1\,500 a bag for the da
- y) or in coin lockers\, and collect them on the way back thr
- ough Shinjuku before 21:00 (then JR to Ueno with the suitcas
- es). Then go down to the JR gates below the terminal: JR Yam
- anote Line\, platform 14\, toward 渋谷・品川 (Shibuya / Shinagawa
- )\, 2 stops to Harajuku JY19\, ~4 min.\n\nSTEP BY STEP:\n- W
- alk: Sagawa counter (3F\, Tokyo Tourist Information Center) 
- → JR Shinjuku New South Gate (新南改札) (2 min · ≈150 m). Busta 
- connects to the New South Gate in about 2 min (several guide
- s). Hand in suitcases by 11:00.\n- Walk: New South Gate → Ya
- manote platform 14 (toward 渋谷・品川) (3 min · ≈200 m) [estimate
- ]. Platform 14 is from the app.\n- Wait: Wait at Shinjuku pl
- atform 14 (~3 min) [estimate]\n- Ride: JR Yamanote Line towa
- rd 渋谷・品川 (Shibuya / Shinagawa): Shinjuku JY17 → Harajuku JY1
- 9\, 2 stops (via Yoyogi JY18) (4 min · ¥160)\n- Walk: Haraju
- ku Station → Meiji Jingu south entrance (first torii) (2 min
-  · ≈100 m) [estimate]. The shrine entrance is beside the sta
- tion.\n- Note: These steps add up to about 14 min\; the sche
- dule keeps 25 (10:45 to 11:10)\, so 11 min are spare for the
-  Sagawa queue and toilets.\n\nFull plan\, maps and live chan
- ges: https://japan-trip-app-wine.vercel.app/
+DESCRIPTION:ARRIVE 11:10: Meiji Jingu + Harajuku lunch\, the
+ n Snoopy at Kiddy Land\nLEAVE 10:45. Sagawa counter\, then J
+ R Yamanote Line to Harajuku (¥160 each)\n\nSagawa deadline 1
+ 1:00. Then JR Yamanote Line from platform 14 to Harajuku\, t
+ ap Suica. After Meiji Jingu and lunch: Snoopy shopping at Ki
+ ddy Land Harajuku (B1\, 6-1-9 Jingumae\, on Omotesando\, 11:
+ 00-20:00)\, about 12:15-12:40. Tax-free over ¥5\,000: bring 
+ passports.\n\nROUTE: On the 3rd floor of Busta Shinjuku\, wh
+ ere the bus arrives\, go into the Tokyo Tourist Information 
+ Center: the Sagawa counter (6:30–21:00) sends suitcases to a
+  Tokyo hotel the same day if you hand them in by 11:00\; the
+ y reach Grids Tokyo Ueno after 16:00 (about ¥2\,180 for a su
+ itcase up to 140 cm and 20 kg\; counted in the budget). If y
+ ou would rather not send them\, or the bus is late and you m
+ iss 11:00\, leave them in storage at the same counter (about
+  ¥800–1\,500 a bag for the day) or in coin lockers\, and col
+ lect them on the way back through Shinjuku before 21:00 (the
+ n JR to Ueno with the suitcases). Then go down to the JR gat
+ es below the terminal: JR Yamanote Line\, platform 14\, towa
+ rd 渋谷・品川 (Shibuya / Shinagawa)\, 2 stops to Harajuku JY19\, 
+ ~4 min.\n\nSTEP BY STEP:\n- Walk: Sagawa counter (3F\, Tokyo
+  Tourist Information Center) → JR Shinjuku New South Gate (新
+ 南改札) (2 min · ≈150 m). Busta connects to the New South Gate 
+ in about 2 min (several guides). Hand in suitcases by 11:00.
+ \n- Walk: New South Gate → Yamanote platform 14 (toward 渋谷・品
+ 川) (3 min · ≈200 m) [estimate]. Platform 14 is from the app.
+ \n- Wait: Wait at Shinjuku platform 14 (~3 min) [estimate]\n
+ - Ride: JR Yamanote Line toward 渋谷・品川 (Shibuya / Shinagawa):
+  Shinjuku JY17 → Harajuku JY19\, 2 stops (via Yoyogi JY18) (
+ 4 min · ¥160)\n- Walk: Harajuku Station → Meiji Jingu south 
+ entrance (first torii) (2 min · ≈100 m) [estimate]. The shri
+ ne entrance is beside the station.\n- Note: These steps add 
+ up to about 14 min\; the schedule keeps 25 (10:45 to 11:10)\
+ , so 11 min are spare for the Sagawa queue and toilets.\n\nF
+ ull plan\, maps and live changes: https://japan-trip-app-win
+ e.vercel.app/
 LOCATION:Meiji Jingu
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -694,33 +698,40 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-icho-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T034000Z
 DTEND:20261121T041000Z
 SUMMARY:Walk: Walk via Omotesando and Aoyama-dori (about 2.2
   km)
 DESCRIPTION:ARRIVE 13:10: Icho Namiki ginkgo avenue\nLEAVE 1
  2:40. Walk via Omotesando and Aoyama-dori (about 2.2 km)\n\n
- ROUTE: From Harajuku Station walk down Omotesando (about 1.1
-  km\, 15 min\, est.) to the Aoyama-dori crossing\, turn left
-  along Aoyama-dori to Gaienmae (about 0.8 km\, 11 min\, est.
- )\, then about 320 m (5 min) from Exit 2a to the start of th
- e ginkgo avenue (Minato City walking map): about 2.2 km and 
- 30 min in all. To save about 10 min take the Ginza Line from
-  Omotesando G02 to Gaienmae G03 (1 stop\, ¥180).\n\nSTEP BY 
- STEP:\n- Walk: Harajuku Station / Jingu-mae crossing → Omote
- sando Station (Aoyama-dori crossing)\, down Omotesando (15 m
- in · ≈1\,100 m) [estimate]. About 1.0 km straight line.\n- W
- alk: Omotesando crossing → Gaienmae Station\, along Aoyama-d
- ori (10 min · ≈750 m) [estimate]. About 0.75 km straight lin
- e.\n- Walk: Gaienmae Station (Exit 2a) → Start of Icho Namik
- i (5 min · ≈320 m). Official Minato City walking map: about 
- 320 m\, about 5 min.\n- Note: Total about 2.2 km\, about 30 
- min on foot. Faster: Ginza Line Omotesando G02 → Gaienmae G0
- 3\, 1 stop\, about 2 min\, ¥180\, saves about 10 min of walk
- ing.\n\nFull plan\, maps and live changes: https://japan-tri
- p-app-wine.vercel.app/
+ Leave Kiddy Land by about 12:40 and keep walking down Omotes
+ ando: no detour.\n\nROUTE: From Harajuku Station walk down O
+ motesando\; Kiddy Land (Snoopy Town Shop\, B1\, 6-1-9 Jingum
+ ae) is on this stretch\, so the Snoopy stop (about 12:15–12:
+ 40) needs no detour and the walk after it is a few minutes s
+ horter. Continue to the Aoyama-dori crossing (about 1.1 km f
+ rom the station\, 15 min\, est.)\, turn left along Aoyama-do
+ ri to Gaienmae (about 0.8 km\, 11 min\, est.)\, then about 3
+ 20 m (5 min) from Exit 2a to the start of the ginkgo avenue 
+ (Minato City walking map): about 2.2 km and 30 min in all. T
+ o save about 10 min take the Ginza Line from Omotesando G02 
+ to Gaienmae G03 (1 stop\, ¥180).\n\nSTEP BY STEP:\n- Walk: H
+ arajuku Station / Jingu-mae crossing (Kiddy Land is on the w
+ ay) → Omotesando Station (Aoyama-dori crossing)\, down Omote
+ sando (15 min · ≈1\,100 m) [estimate]. About 1.0 km straight
+  line. Kiddy Land (Snoopy\, B1) is on this stretch: if you l
+ eave from there\, it is a few minutes shorter.\n- Walk: Omot
+ esando crossing → Gaienmae Station\, along Aoyama-dori (10 m
+ in · ≈750 m) [estimate]. About 0.75 km straight line.\n- Wal
+ k: Gaienmae Station (Exit 2a) → Start of Icho Namiki (5 min 
+ · ≈320 m). Official Minato City walking map: about 320 m\, a
+ bout 5 min.\n- Note: Total about 2.2 km\, about 30 min on fo
+ ot. Faster: Ginza Line Omotesando G02 → Gaienmae G03\, 1 sto
+ p\, about 2 min\, ¥180\, saves about 10 min of walking.\n\nF
+ ull plan\, maps and live changes: https://japan-trip-app-win
+ e.vercel.app/
 LOCATION:Icho Namiki Jingu Gaien
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -731,8 +742,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-shibuya-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T045500Z
 DTEND:20261121T051000Z
 SUMMARY:Metro: Ginza Line\, Gaienmae → Shibuya (about 15 min
@@ -765,8 +776,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-shibuya-2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T063500Z
 DTEND:20261121T064000Z
 SUMMARY:! Walk: Into Shibuya Scramble Square\, lift to 14F
@@ -795,8 +806,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-minami-2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T081200Z
 DTEND:20261121T083500Z
 SUMMARY:Train: JR Yamanote Line\, Shibuya → Shinjuku South E
@@ -835,8 +846,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-tocho-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T091500Z
 DTEND:20261121T093000Z
 SUMMARY:Walk: Walk west past the West Exit to the twin tower
@@ -867,8 +878,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-yokocho-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T094800Z
 DTEND:20261121T100000Z
 SUMMARY:Walk: Walk to the West Exit\, Omoide Yokocho
@@ -892,8 +903,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-kabuki-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T114500Z
 DTEND:20261121T115500Z
 SUMMARY:Walk: Walk along the lit main streets (about 10 min)
@@ -925,8 +936,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-ueno-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T123300Z
 DTEND:20261121T131500Z
 SUMMARY:! Train: JR Yamanote Line\, Shinjuku → Ueno (about 4
@@ -976,8 +987,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sat-grids@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T131000Z
 DTEND:20261121T131500Z
 SUMMARY:! Leave Shinjuku now: Grids check-in closes 23:00
@@ -994,8 +1005,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sun-sensoji-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T215000Z
 DTEND:20261121T220000Z
 SUMMARY:Metro: Ginza Line\, Ueno → Asakusa
@@ -1038,8 +1049,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sun-ueno-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261121T232000Z
 DTEND:20261121T234000Z
 SUMMARY:Metro: Ginza Line\, Asakusa → Ueno (about 20 min doo
@@ -1073,8 +1084,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sun-narita-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261122T002400Z
 DTEND:20261122T010500Z
 SUMMARY:! Train: Skyliner about 09:20\, Keisei-Ueno → Airpor
@@ -1121,8 +1132,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sun-shisui-1@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261122T013200Z
 DTEND:20261122T015000Z
 SUMMARY:Bus: Bus from T2 stop 28 to Shisui Premium Outlets
@@ -1151,8 +1162,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-sun-narita-2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261122T034200Z
 DTEND:20261122T040000Z
 SUMMARY:Bus: Bus back from the outlet to Terminal 2
@@ -1181,8 +1192,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-t2@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261122T040000Z
 DTEND:20261122T042500Z
 SUMMARY:! Be at Narita Terminal 2 (VJ935 16:25)
@@ -1205,8 +1216,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jp-flight@jp-trip
-SEQUENCE:21891
-DTSTAMP:20261116T045100Z
+SEQUENCE:22011
+DTSTAMP:20261116T065100Z
 DTSTART:20261122T072500Z
 DTEND:20261122T082500Z
 SUMMARY:VJ935 Narita T2 to Hanoi
