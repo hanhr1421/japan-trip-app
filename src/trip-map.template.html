@@ -797,7 +797,7 @@ function installHTML(){const ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(na
 function offlineTxt(){let t=navigator.serviceWorker&&navigator.serviceWorker.controller?'Saved on this phone for offline use.':'Open once with internet to save it for offline use.';if(!navigator.onLine)t+=' You are offline: this is the saved copy.';return t;}
 function toolsHTML(){return `<h3>Phone tools</h3>
   <div class="tool"><button class="btn pri" id="geoBtn">Where am I?</button><span class="muted" id="geoOut">${esc(TD.geoMsg||'Shows how far you are from the next stop. Asks for location permission once.')}</span></div>
-  ${APP?`<div class="tool"><button class="btn" id="icsBtn">Add reminders to my calendar</button><span class="muted">Every train, bus and the flight, each with an alert 15 minutes before. If the button does nothing on iPhone, use <a class="lk" href="trip.ics">the full-plan calendar file</a>.</span></div>
+  ${APP?`<div class="tool"><button class="btn" id="icsBtn">Add reminders to my calendar</button><span class="muted">Every train, bus, taxi and the flight, plus the deadlines (sunset, check-out, Sagawa, Grids check-in), each with an alert 15 minutes before; the critical ones (marked !) get a second alert 45 minutes before. Each event holds the step-by-step route, how to use the ticket and what to do if late. If you added an older version, delete those events first. If the button does nothing on iPhone, use <a class="lk" href="trip.ics">the full-plan calendar file</a>.</span></div>
   <div class="tool"><span class="muted"><b>Permissions:</b> location (only when you tap Where am I?) and the calendar file you choose to add. No account, no notifications. Group sync sends only your name, your messages, the plan choices and the booking ticks. Your position is sent to the group only if you switch on “Share my location”.</span></div>
   ${isStandalone()?'':installHTML()}<p class="note" id="offl">${offlineTxt()}</p>`
   :`<div class="tool"><a class="btn pri" href="${APPURL}" target="_blank" rel="noopener">Open the phone app ↗</a><span class="muted">For use during the trip: install it on your phone for offline use, “Where am I?” and calendar reminders. Link: <b>${esc(APPURL.replace(/^https:\/\//,'').replace(/\/$/,''))}</b></span></div>`}`;}
@@ -825,12 +825,58 @@ function locate(){if(!navigator.geolocation){setGeo('This browser cannot share l
     const far=nd>80;const km=LL[tgt.id]?hav(la,lo,LL[tgt.id][0],LL[tgt.id][1]):null;
     setGeo(far?`You are ${fmtKm(hav(la,lo,35.681,139.767))} from Tokyo, outside the trip area.`:`You are ${fmtKm(km)} from ${shortName(tgt.id)}, the next stop${near&&near!==tgt.id?`; nearest trip place: ${shortName(near)} (${fmtKm(nd)})`:''}. Accuracy about ${Math.round(ac)} m.`);
     if(window.__mainOK&&!far){try{showMe(la,lo);}catch(e){}}},fail,{enableHighAccuracy:true,timeout:15000,maximumAge:60000});}catch(e){fail(null);}}
+const ICS_TIX={
+ 'fri|shinosaka|06:00':'TICKET (Klook): Nozomi 308, 06:39, booked for 6. Open the Klook booking. If it says QR boarding: each person scans their own QR at a Shinkansen gate with the QR mark and keeps it for the exit at Tokyo. If it says pick-up: scan the QR at a JR ticket machine first to print 6 paper tickets (allow 10-15 min). iPhone: turn off Express Transit before scanning. Midosuji Line: tap your own Suica/ICOCA. Buy breakfast at PLUSTA inside the gate.',
+ 'fri|tokyo|09:06':'Seats are on the Klook ticket. Tokyo is the last stop (Shinagawa 08:59 is the one before). Keep the QR/ticket for the exit gate. Then walk to the JR Highway Bus Terminal at the Yaesu South Exit for the 09:50 bus (check the boarding point on the bus voucher).',
+ 'fri|kawaguchiko|11:52':'TICKET (Klook): Fujikyu bus 09:50, booked for 6. Show the Klook voucher to the driver; save a screenshot in case there is no signal. Be at the stop by about 09:30. One suitcase each in the hold (queue early). Arrive Kawaguchiko 11:52.',
+ 'fri|oishi|12:42':'At Kawaguchiko Station first: suitcases into the coin lockers (they stay until about 20:06) and buy lunch at the Seven-Eleven by the station. Red Line: tap Suica. Quick lunch at Oishi Park. Be back at stop 20 by 13:40.',
+ 'fri|kawaguchiko|14:09':'Red Line 13:42 back to the station, tap Suica. If you miss it: the 13:57, then the 14:58 or 15:16 train.',
+ 'fri|chureito|15:10':'Fujikyu Line 14:25 to Shimoyoshida: tap Suica. Sunset 16:33, deck about 15:10. Fallbacks: 14:58 Fuji Kaiyu (all seats reserved: buy a limited-express ticket at the Kawaguchiko window before boarding) or the 15:16 local. The 15:56 is after sunset.',
+ 'fri|chureito|17:10':'Leave the deck about 16:40. Use a phone torch on the steps.',
+ 'fri|kawaguchiko|20:06':'Fujikyu 19:53 from Shimoyoshida, tap Suica (later: 20:23, 20:52, 21:34, last 23:51). Collect the suitcases from the lockers, then Fuga A, 2 min on foot (contactless check-in).',
+ 'sat|kogamasao|06:00':'TAXI (book ahead, confirm the night before): 05:45 from Fuga A, 2 cars or one jumbo taxi for 6; pay the driver. No bus runs before 9:00. Sunrise about 06:25. Wear the warm layers: near freezing.',
+ 'sat|kawaguchiko|07:45':'TAXI back at 07:30 (pre-booked). At Fuga A: breakfast, pack, check out by 08:25.',
+ 'sat|minami|10:25':'TICKET (Klook): highway bus 08:40 from stop 3 at Kawaguchiko Station, booked for 6. Show the Klook voucher to the driver; be at the stop by 08:30. At Busta Shinjuku: Sagawa counter on 3F, hand in the suitcases by 11:00 for same-day delivery to Grids.',
+ 'sat|meiji|11:10':'Sagawa deadline 11:00. Then JR Yamanote Line from platform 14 to Harajuku, tap Suica.',
+ 'sat|shibuya|15:40':'TICKET: Shibuya Sky timed ticket (only if booked): show the QR at the entrance. Stay until about 17:10 to see the city lights come on.',
+ 'sat|tocho|18:30':'Free projection show, every 30 min 17:30-21:30, cancelled in bad weather.',
+ 'sat|kabuki|20:55':'Optional dessert and night walk. Nothing is booked: stay longer if you like, but leave Shinjuku by about 22:10.',
+ 'sat|ueno|22:15':'JR Yamanote Line from platform 15, tap Suica. Grids check-in closes 23:00: leave Shinjuku by about 22:10. The suitcases come by Sagawa.',
+ 'sun|sensoji|07:00':'Ginza Line, tap Suica. Leave Asakusa by 08:20.',
+ 'sun|ueno|08:40':'Check out of Grids and take the suitcases; walk about 9 min to Keisei-Ueno.',
+ 'sun|narita|10:05':'TICKET: Skyliner e-ticket (to buy): swap the voucher for seat tickets at the Keisei-Ueno counter or Code Exchange machine by about 09:00. On a full train, seats together are not guaranteed.',
+ 'sun|shisui|10:50':'Suitcases to a T2 baggage counter first. Bus from T2 stop 28; IC card or cash.',
+ 'sun|narita|13:00':'Be at T2 by 13:00: collect the suitcases, tax-free refund kiosk before check-in, VietJet counters 13:25-15:25.'};
+const ICS_EXTRA=[
+ {id:'fri-sunset',d:[2026,10,20,16,20],m:20,sum:'Sunset 16:33 at Chureito Pagoda: be on the deck',desc:'Sunset 16:33, to the right of Mt Fuji. Leave the deck about 16:40 for Honcho Street.',loc:'Arakurayama Sengen Park, Fujiyoshida',al:[30]},
+ {id:'sat-checkout',d:[2026,10,21,8,10],m:15,sum:'Check out of Fuga A by 08:25 (bus 08:40)',desc:'Take everything; the 08:40 highway bus leaves from stop 3 at Kawaguchiko Station, 2 min on foot. Show the Klook voucher to the driver.',loc:'Kawaguchiko Station',al:[15,30]},
+ {id:'sat-sagawa',d:[2026,10,21,10,25],m:35,sum:'Sagawa deadline 11:00: suitcases to Grids',desc:'Busta Shinjuku 3F Sagawa counter. Hand in by 11:00 for same-day delivery to Grids Tokyo Ueno (about ¥2,180 a bag). If missed: storage at the counter or coin lockers, collect before 21:00.',loc:'Busta Shinjuku',al:[0]},
+ {id:'sat-grids',d:[2026,10,21,22,10],m:5,sum:'Leave Shinjuku now: Grids check-in closes 23:00',desc:'JR Yamanote Line from platform 15 to Ueno, about 42 min door to door.',loc:'JR Shinjuku Station East Exit',al:[0]}];
 function icsText(){const f=ms=>{const d=new Date(ms);return d.getUTCFullYear()+p2(d.getUTCMonth()+1)+p2(d.getUTCDate())+'T'+p2(d.getUTCHours())+p2(d.getUTCMinutes())+'00Z';};
-  const ev=[];STOPS.forEach(s=>{const L=legOf(s);if(!L||(L.mode==='walk'&&L.min<10))return;ev.push({a:depMs(s),b:stopMs(s),sum:`${MODES[L.mode][0]}: ${strip(L.label)}`,desc:strip(L.how)+(L.note&&L.choice?' '+L.note:''),loc:destOf(s)});});
-  ev.push({a:Date.UTC(2026,10,22,13,0)-JST,b:Date.UTC(2026,10,22,13,25)-JST,sum:'Be at Narita Terminal 2 (VJ935 16:25)',desc:'Tax-refund kiosk first, then VietJet bag drop (counters 13:25-15:25).',loc:'Narita Airport Terminal 2'});
-  ev.push({a:FLIGHT_MS,b:FLIGHT_MS+36e5,sum:'VJ935 Narita T2 to Hanoi',desc:'Be at the gate by about 15:35; it closes about 16:05.',loc:'Narita Airport Terminal 2'});
-  const e=t=>String(t).replace(/([,;\\])/g,'\\$1').replace(/\n/g,'\\n');const out=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//jp-trip//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Japan trip 20-22 Nov'];
-  ev.forEach((x,k)=>out.push('BEGIN:VEVENT',`UID:jp-trip-${k}-${x.a}@trip`,`DTSTAMP:${f(Date.now())}`,`DTSTART:${f(x.a)}`,`DTEND:${f(Math.max(x.b,x.a+3e5))}`,`SUMMARY:${e(x.sum)}`,`DESCRIPTION:${e(x.desc)}`,`LOCATION:${e(x.loc)}`,'BEGIN:VALARM','ACTION:DISPLAY',`DESCRIPTION:${e(x.sum)}`,'TRIGGER:-PT15M','END:VALARM','END:VEVENT'));
+  const hm=ms=>{const d=new Date(ms+JST);return p2(d.getUTCHours())+':'+p2(d.getUTCMinutes());};
+  const KIND={walk:'Walk',wait:'Wait',ride:'Ride',taxi:'Taxi',note:'Note'};
+  const lateTxt=day=>{const L=(typeof LATE!=='undefined')&&LATE.find(x=>x.d===day);if(!L)return '';return '\n\nTODAY\'S FIXED POINTS:\n'+L.fixed.map(t=>'- '+strip(t)).join('\n')+'\nIF RUNNING LATE:\n'+L.ladder.map(t=>'- '+strip(t)).join('\n');};
+  const ev=[];const seen={};const firstOfDay={};
+  STOPS.forEach(s=>{const L=legOf(s);const key=s.day+'|'+s.id+'|'+s.t;if(!L||(L.mode==='walk'&&L.min<10&&!ICS_TIX[key]))return;
+    const n=(seen[s.day+s.id]=(seen[s.day+s.id]||0)+1);const b=stopMs(s);const a=key==='fri|shinosaka|06:00'?b-20*6e4:depMs(s);
+    let d='ARRIVE '+hm(b)+': '+strip(s.title)+'\nLEAVE '+hm(a)+'. '+strip(L.label)+(L.fare?' (¥'+L.fare+' each)':'');
+    if(ICS_TIX[key])d+='\n\n'+ICS_TIX[key];
+    if(L.how)d+='\n\nROUTE: '+strip(L.how)+(L.note&&L.choice?' '+strip(L.note):'');
+    const D=(typeof DET!=='undefined')&&DET[key];if(D&&!s._gap)d+='\n\nSTEP BY STEP:\n'+D.s.map(x=>'- '+(KIND[x[0]]||x[0])+': '+x[1]+(x[2]?' ('+x[2]+')':'')+(x[3]?' [estimate]':'')+(x[4]?'. '+x[4]:'')).join('\n');
+    if(!firstOfDay[s.day]){firstOfDay[s.day]=1;d+=lateTxt(s.day);}
+    const crit=/TICKET|TAXI|deadline|closes|Sunset/i.test(ICS_TIX[key]||'');
+    ev.push({uid:'jp-'+s.day+'-'+s.id+'-'+n,a,b,sum:(crit?'! ':'')+`${MODES[L.mode][0]}: ${strip(L.label)}`,desc:d,loc:destOf(s),al:crit?[15,45]:[15]});});
+  ICS_EXTRA.forEach(x=>{const a=Date.UTC(...x.d)-JST;ev.push({uid:'jp-'+x.id,a,b:a+x.m*6e4,sum:'! '+x.sum,desc:x.desc,loc:x.loc,al:x.al});});
+  ev.push({uid:'jp-t2',a:Date.UTC(2026,10,22,13,0)-JST,b:Date.UTC(2026,10,22,13,25)-JST,sum:'! Be at Narita Terminal 2 (VJ935 16:25)',desc:'Collect the suitcases from the baggage counter. Tax-free refund kiosk first (since 1 Nov 2026 it is done before check-in), then VietJet bag drop (counters 13:25-15:25). Have passports ready.',loc:'Narita Airport Terminal 2',al:[15,45]});
+  ev.push({uid:'jp-flight',a:FLIGHT_MS,b:FLIGHT_MS+36e5,sum:'VJ935 Narita T2 to Hanoi',desc:'Be at the gate by about 15:35; it closes about 16:05.',loc:'Narita Airport Terminal 2',al:[50]});
+  ev.sort((x,y)=>x.a-y.a);
+  const app=(typeof APPURL==='string'&&/^https?:/.test(APPURL))?'\n\nFull plan, maps and live changes: '+APPURL:'';
+  const e=t=>String(t).replace(/([,;\\])/g,'\\$1').replace(/\r?\n/g,'\\n');
+  const fold=l=>{const c=[...l];if(c.length<=60)return l;const o=[];for(let i=0;i<c.length;i+=60)o.push(c.slice(i,i+60).join(''));return o.join('\r\n ');};
+  const seq=Math.floor((Date.now()-Date.UTC(2026,10,1))/6e4);
+  const out=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//jp-trip//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Japan trip 20-22 Nov','X-WR-TIMEZONE:Asia/Tokyo'];
+  ev.forEach(x=>{out.push('BEGIN:VEVENT',`UID:${x.uid}@jp-trip`,`SEQUENCE:${seq}`,`DTSTAMP:${f(Date.now())}`,`DTSTART:${f(x.a)}`,`DTEND:${f(Math.max(x.b,x.a+3e5))}`,fold(`SUMMARY:${e(x.sum)}`),fold(`DESCRIPTION:${e(x.desc+app)}`),fold(`LOCATION:${e(x.loc)}`));
+    (x.al||[15]).forEach(m=>out.push('BEGIN:VALARM','ACTION:DISPLAY',fold(`DESCRIPTION:${e(x.sum)}`),`TRIGGER:-PT${m}M`,'END:VALARM'));out.push('END:VEVENT');});
   out.push('END:VCALENDAR');return out.join('\r\n');}
 function downloadICS(){try{const b=new Blob([icsText()],{type:'text/calendar'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='japan-trip.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(u);a.remove();},4000);}catch(e){location.href='trip.ics';}}
 function renderLinks(){const el=document.getElementById('pane');if(!el)return;el.innerHTML=`<h3>Bookings and links</h3>`+Object.values(BK).map(([t,u])=>`<div style="margin:6px 0"><a class="btn" href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a></div>`).join('');}

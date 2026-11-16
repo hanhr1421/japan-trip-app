@@ -57,6 +57,7 @@ There is **one plan** since 13 Nov (user: "just one plan, Osaka, Yamanashi, Toky
    - check a phone-sized viewport.
 4. Commit and push to `main`; Vercel redeploys.
 5. Regenerate `public/trip.ics` from the page (`icsText()` with the full plan) if the times changed.
+   The calendar (user, 16 Nov: "make sure the ics is detailed for each critical timeline with instructions") is built by `icsText()`: one event per leg (walks under 10 min skipped unless they have a ticket note), each with ARRIVE/LEAVE, the ticket note from `ICS_TIX` (keyed like `DET`; **update it when a booking or time changes**), the `how` route, the `DET` steps, and the day's `LATE` lines on the first event of each day; plus milestone events in `ICS_EXTRA` (sunset, Fuga A check-out, Sagawa 11:00, leave Shinjuku for Grids), T2 and the flight. Critical events start with `!` and get alerts at 15 and 45 min. UIDs are stable (`jp-<day>-<id>-<n>`), lines are folded at 60 characters.
 
 ## Facts to keep straight
 - Keisei changes its timetable on 21 Nov 2026. Weekend Skyliners are renumbered: the 12:00 from Keisei-Ueno is **Skyliner 41**, arriving T2 at 12:41.
